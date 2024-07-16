@@ -1,89 +1,93 @@
 ---
-import { Image } from 'astro:assets';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { REPRESENTATIVE_IMAGES } from '../utils/constants';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { REPRESENTATIVE_IMAGES } from "../utils/constants";
 
-const pageTitle = 'Index Page'
-
+const pageTitle = "Index Page";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-	<div class="wrapper">
-		<div class="images-wrapper">
-			{REPRESENTATIVE_IMAGES.map((image) => 
-				<div class="image-wrapper">
-					<a href={`/photos/${image.year}`}>
-						<Image class="representative-image" src={image.img} alt={image.alt} />
-					</a>
-					<div class="year-text">{image.year}</div>
-				</div>
-			)}
-		</div>
-	</div>
+  <div class="wrapper">
+    <div class="images-wrapper">
+      {
+        REPRESENTATIVE_IMAGES.map((image) => (
+          <div class="image-wrapper">
+            <a href={`/photos/${image.year}`}>
+              <img
+                class="representative-image"
+                src={image.img.src}
+                alt={image.alt}
+              />
+            </a>
+            <div class="year-text">{image.year}</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
 </BaseLayout>
 
 <style>
-	.images-wrapper {
-		display: grid;
-		grid-template-columns: repeat(2, auto);
-		column-gap: 1em;
-		row-gap: 1em;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%,-50%);
-	}
+  .images-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    column-gap: 1em;
+    row-gap: 1em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-	.image-wrapper:hover {
-		transform: scale(1.01);
-		transition: transform 0.2s;
-	}
+  .image-wrapper:hover {
+    transform: scale(1.01);
+    transition: transform 0.2s;
+  }
 
-	.image-wrapper {
-		position: relative;
-	}
+  .image-wrapper {
+    position: relative;
+  }
 
-	.year-text {
-		position: absolute;
-		bottom: 12px;
-		right: 12px;
-		font-weight: 600;
-		color: rgb(224, 238, 238);
-		font-size: 48px;
-		letter-spacing: .2rem;
-	}
+  .year-text {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    font-weight: 600;
+    color: rgb(224, 238, 238);
+    font-size: 48px;
+    letter-spacing: 0.2rem;
+  }
 
-	@media (min-width: 1281px)  {
-		.representative-image {
-			width: 560px;
-			height: auto;
-			border-radius: 8px;
-		}
-	}
+  @media (min-width: 1281px) {
+    .representative-image {
+      width: 560px;
+      height: auto;
+      border-radius: 8px;
+    }
+  }
 
-	@media (min-width: 960px) and (max-width: 1280px) {
-		.representative-image {
-			width: 320px;
-			height: auto;
-			border-radius: 6px;
-		}
+  @media (min-width: 960px) and (max-width: 1280px) {
+    .representative-image {
+      width: 320px;
+      height: auto;
+      border-radius: 6px;
+    }
 
-		.year-text {
-			font-size: 32px;
-		}
-	}
+    .year-text {
+      font-size: 32px;
+    }
+  }
 
-	@media (max-width: 960px) {
-		.representative-image {
-			width: 160px;
-			height: auto;
-			border-radius: 4px;
-		}
+  @media (max-width: 960px) {
+    .representative-image {
+      width: 160px;
+      height: auto;
+      border-radius: 4px;
+    }
 
-		.year-text {
-			bottom: 8px;
-			right: 8px;
-			font-size: 16px;
-		}
-	}
+    .year-text {
+      bottom: 8px;
+      right: 8px;
+      font-size: 16px;
+    }
+  }
 </style>
