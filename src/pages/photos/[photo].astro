@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { REPRESENTATIVE_IMAGES } from '../../utils/constants';
+
+export function getStaticPaths() {
+  return REPRESENTATIVE_IMAGES.map((image) => {
+    return {
+      params: {photo: image.year}
+    }
+  }
+)
+}
+---
+
+<BaseLayout>
+</BaseLayout>
+
