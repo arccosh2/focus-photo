@@ -6,23 +6,21 @@ const pageTitle = "Index Page";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <div class="wrapper">
-    <div class="images-wrapper">
-      {
-        REPRESENTATIVE_IMAGES.map((image) => (
-          <div class="image-wrapper">
-            <a href={`/photos/${image.year}`}>
-              <img
-                class="representative-image"
-                src={image.img.src}
-                alt={image.alt}
-              />
-            </a>
-            <div class="year-text">{image.year}</div>
-          </div>
-        ))
-      }
-    </div>
+  <div class="images-wrapper">
+    {
+      REPRESENTATIVE_IMAGES.map((image) => (
+        <div class="image-wrapper">
+          <a href={`/photos/${image.year}`}>
+            <img
+              class="representative-image"
+              src={image.img.src}
+              alt={image.alt}
+            />
+          </a>
+          <div class="year-text">{image.year}</div>
+        </div>
+      ))
+    }
   </div>
 </BaseLayout>
 
@@ -55,6 +53,8 @@ const pageTitle = "Index Page";
     color: rgb(224, 238, 238);
     font-size: 48px;
     letter-spacing: 0.2rem;
+    mix-blend-mode: color-dodge;
+    opacity: 0.8;
   }
 
   @media (min-width: 1281px) {

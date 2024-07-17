@@ -1,17 +1,17 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { REPRESENTATIVE_IMAGES } from '../../utils/constants';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { REPRESENTATIVE_IMAGES } from "../../utils/constants";
 
 export function getStaticPaths() {
   return REPRESENTATIVE_IMAGES.map((image) => {
     return {
-      params: {photo: image.year}
-    }
-  }
-)
+      params: { photo: image.year },
+    };
+  });
 }
+
+const { photo } = Astro.params;
+const pageTitle = "photos";
 ---
 
-<BaseLayout>
-</BaseLayout>
-
+<BaseLayout pageTitle={`${pageTitle} in ${photo}`} />
