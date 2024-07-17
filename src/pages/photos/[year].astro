@@ -5,13 +5,13 @@ import { REPRESENTATIVE_IMAGES } from "../../utils/constants";
 export function getStaticPaths() {
   return REPRESENTATIVE_IMAGES.map((image) => {
     return {
-      params: { photo: image.year },
+      params: { year: image.year },
     };
   });
 }
 
-const { photo } = Astro.params;
+const { year } = Astro.params;
 const pageTitle = "photos";
 ---
 
-<BaseLayout pageTitle={`${pageTitle} in ${photo}`} />
+<BaseLayout pageTitle={`${pageTitle} in ${year}`} />
