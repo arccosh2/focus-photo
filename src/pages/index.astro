@@ -3,37 +3,66 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { REPRESENTATIVE_IMAGES } from "../utils/constants";
 
 const pageTitle = "Index Page";
+
+const IMAGE_WIDTH_PC = "560px";
+const IMAGE_HEIGHT_PC = "373px";
+const IMAGE_WIDTH_TAB = "320px";
+const IMAGE_HEIGHT_TAB = "213px";
+const IMAGE_WIDTH_SP = "240px";
+const IMAGE_HEIGHT_SP = "160px";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <div class="images-wrapper">
-    {
-      REPRESENTATIVE_IMAGES.map((image) => (
-        <div class="image-wrapper">
-          <a href={`/photos/${image.year}`}>
-            <img
-              class="representative-image"
-              src={image.img.src}
-              alt={image.alt}
-            />
-          </a>
-          <div class="year-text">{image.year}</div>
-        </div>
-      ))
-    }
+  <div class="contents">
+    <div class="images-wrapper">
+      {
+        REPRESENTATIVE_IMAGES.map((image) => (
+          <div class="image-wrapper">
+            <a href={`/photos/${image.year}`}>
+              <img
+                class="representative-image"
+                src={image.img.src}
+                alt={image.alt}
+              />
+            </a>
+            <div class="year-text">{image.year}</div>
+          </div>
+        ))
+      }
+    </div>
   </div>
 </BaseLayout>
 
-<style>
+<style
+  define:vars={{
+    IMAGE_WIDTH_PC,
+    IMAGE_HEIGHT_PC,
+    IMAGE_WIDTH_TAB,
+    IMAGE_HEIGHT_TAB,
+    IMAGE_WIDTH_SP,
+    IMAGE_HEIGHT_SP,
+  }}
+>
+  .contents {
+    width: 100%;
+    height: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .images-wrapper {
     display: grid;
     grid-template-columns: repeat(2, auto);
-    column-gap: 1em;
-    row-gap: 1em;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    gap: 1rem;
+  }
+
+  .image-wrapper {
+    width: var(--IMAGE_WIDTH_PC);
+    height: var(--IMAGE_HEIGHT_PC);
+    position: relative;
+    transform: scale(1);
+    transition: transform 0.2s;
   }
 
   .image-wrapper:hover {
@@ -41,8 +70,10 @@ const pageTitle = "Index Page";
     transition: transform 0.2s;
   }
 
-  .image-wrapper {
-    position: relative;
+  .representative-image {
+    width: var(--IMAGE_WIDTH_PC);
+    height: var(--IMAGE_HEIGHT_PC);
+    border-radius: 8px;
   }
 
   .year-text {
@@ -57,18 +88,19 @@ const pageTitle = "Index Page";
     opacity: 0.8;
   }
 
-  @media (min-width: 1281px) {
-    .representative-image {
-      width: 560px;
-      height: auto;
-      border-radius: 8px;
-    }
-  }
-
   @media (min-width: 960px) and (max-width: 1280px) {
+    .contents {
+      height: 500px;
+    }
+
+    .image-wrapper {
+      width: var(--IMAGE_WIDTH_TAB);
+      height: var(--IMAGE_HEIGHT_TAB);
+    }
+
     .representative-image {
-      width: 320px;
-      height: auto;
+      width: var(--IMAGE_WIDTH_TAB);
+      height: var(--IMAGE_HEIGHT_TAB);
       border-radius: 6px;
     }
 
@@ -78,15 +110,29 @@ const pageTitle = "Index Page";
   }
 
   @media (max-width: 960px) {
+    .contents {
+      height: 700px;
+    }
+
+    .images-wrapper {
+      height: 680px;
+      grid-template-columns: repeat(1, auto);
+    }
+
+    .image-wrapper {
+      width: var(--IMAGE_WIDTH_SP);
+      height: var(--IMAGE_HEIGHT_SP);
+    }
+
     .representative-image {
-      width: 160px;
-      height: auto;
+      width: var(--IMAGE_WIDTH_SP);
+      height: var(--IMAGE_HEIGHT_SP);
       border-radius: 4px;
     }
 
     .year-text {
-      bottom: 8px;
-      right: 8px;
+      bottom: 4px;
+      right: 4px;
       font-size: 16px;
     }
   }
