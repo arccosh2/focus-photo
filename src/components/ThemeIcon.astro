@@ -1,0 +1,87 @@
+---
+import lightModeIcon from "../assets/common/ic_light-mode.svg";
+
+const ICON_SIZE_PC = "40px";
+const ICON_SIZE_TAB = "32px";
+const ICON_SIZE_SP = "24px";
+---
+
+<button class="theme-toggle">
+  <img class="light-mode-icon" src={lightModeIcon.src} />
+</button>
+
+<style define:vars={{ ICON_SIZE_PC, ICON_SIZE_TAB, ICON_SIZE_SP }}>
+  .theme-toggle {
+    border: none;
+    background: none;
+  }
+
+  .light-mode-icon {
+    width: var(--ICON_SIZE_PC);
+    height: var(--ICON_SIZE_PC);
+  }
+
+  @media (min-width: 960px) and (max-width: 1280px) {
+    .light-mode-icon {
+      width: var(--ICON_SIZE_TAB);
+      height: var(--ICON_SIZE_TAB);
+    }
+  }
+
+  @media (max-width: 960px) {
+    .light-mode-icon {
+      width: var(--ICON_SIZE_SP);
+      height: var(--ICON_SIZE_SP);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const theme = (() => {
+      if (
+        typeof localStorage !== "undefined" &&
+        localStorage.getItem("theme")
+      ) {
+        return localStorage.getItem("theme");
+      }
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+      }
+      return "light";
+    })();
+
+    if (!theme) return "light";
+
+    if (theme === "light") {
+      document.documentElement.classList.remove("dark");
+    } else {
+      document.documentElement.classList.add("dark");
+    }
+
+    window.localStorage.setItem("theme", theme);
+
+    const handleToggleClick = () => {
+      const element = document.documentElement;
+      element.classList.toggle("dark");
+
+      const isDark = element.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    };
+
+    document
+      .getElementById("themeToggle")
+      ?.addEventListener("click", handleToggleClick);
+  });
+</script>
+
+<script is:inline>
+  function applyTheme() {
+    localStorage.theme === "dark"
+      ? document.documentElement.classList.add("dark")
+      : document.documentElement.classList.remove("dark");
+  }
+
+  document.addEventListener("astro:after-swap", applyTheme);
+  applyTheme();
+</script>

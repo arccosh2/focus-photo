@@ -1,4 +1,5 @@
 ---
+import Header from "../components/Header.astro";
 import "../styles/global.css";
 
 const { pageTitle } = Astro.props;
@@ -17,11 +18,12 @@ const { pageTitle } = Astro.props;
     onselectstart="return false;"
     onmousedown="return false;"
   >
-    <main>
-      <div class="wrapper">
+    <div class="wrapper">
+      <Header />
+      <main>
         <slot />
-      </div>
-    </main>
+      </main>
+    </div>
   </body>
 </html>
 
@@ -29,7 +31,5 @@ const { pageTitle } = Astro.props;
   .wrapper {
     height: 100svh;
     background-size: 100%;
-    background-image: url("../assets/common/noise.webp");
-    background-repeat: repeat;
   }
 </style>
