@@ -7,8 +7,10 @@ import ThemeIcon from "./ThemeIcon.astro";
 <header>
   <nav>
     <div class="nav-contents">
-      <img class="logo-light" src={logoLight.src} alt="light mode logo" />
-      <img class="logo-dark" src={logoDark.src} alt="dark mode logo" />
+      <a href="/">
+        <img class="logo-light" src={logoLight.src} alt="light mode logo" />
+        <img class="logo-dark" src={logoDark.src} alt="dark mode logo" />
+      </a>
       <ThemeIcon />
     </div>
   </nav>
