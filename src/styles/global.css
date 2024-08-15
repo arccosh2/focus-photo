@@ -16,7 +16,7 @@ html {
 
 html.dark {
   color: #fff;
-  background: linear-gradient(180deg, #1e0856 0%, #282f4e 50%, #6f4b3d 100%);
+  background: linear-gradient(180deg, #19054e 0%, #282f4e 50%, #784242 100%);
 }
 
 header {
@@ -31,4 +31,8 @@ body {
 
 iframe {
   display: block;
+}
+
+button {
+  cursor: pointer;
 }
