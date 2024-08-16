@@ -20,17 +20,9 @@ const { pageTitle } = Astro.props;
     onselectstart="return false;"
     onmousedown="return false;"
   >
-    <div class="wrapper">
-      <Header />
-      <main>
-        <slot />
-      </main>
-    </div>
-    <style>
-      .wrapper {
-        height: 100svh;
-        background-size: 100%;
-      }
-    </style>
+    <Header />
+    <main>
+      <slot />
+    </main>
   </body>
 </html>
