@@ -1,4 +1,6 @@
 ---
+import { fade, ViewTransitions } from "astro:transitions";
+import Header from "../components/Header.astro";
 import "../styles/global.css";
 
 const { pageTitle } = Astro.props;
@@ -11,25 +13,16 @@ const { pageTitle } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
+    <ViewTransitions />
   </head>
   <body
     oncontextmenu="return false;"
     onselectstart="return false;"
     onmousedown="return false;"
   >
+    <Header />
     <main>
-      <div class="wrapper">
-        <slot />
-      </div>
+      <slot />
     </main>
   </body>
 </html>
-
-<style>
-  .wrapper {
-    height: 100svh;
-    background-size: 100%;
-    background-image: url("../assets/common/noise.webp");
-    background-repeat: repeat;
-  }
-</style>
