@@ -24,13 +24,13 @@ import ThemeIcon from "./ThemeIcon.astro";
   }
 
   .logo-light {
-    margin: 24px 80px 16px 120px;
+    margin: 24px 100px 0 140px;
     width: 120px;
     height: 137px;
   }
 
   .logo-dark {
-    margin: 24px 80px 16px 120px;
+    margin: 24px 100px 0 140px;
     width: 120px;
     height: 137px;
     display: none;
@@ -44,17 +44,30 @@ import ThemeIcon from "./ThemeIcon.astro";
   }
 
   @media (min-width: 960px) and (max-width: 1280px) {
-    .logo {
+    .logo-light {
+      margin: 16px 88px 0 120px;
+      width: 88px;
+      height: 100px;
+    }
+
+    .logo-dark {
+      margin: 16px 88px 0 120px;
       width: 88px;
       height: 100px;
     }
   }
 
   @media (max-width: 960px) {
-    .logo {
-      margin-right: 90px;
+    .logo-light {
+      margin: 18px 48px 0 72px;
       width: 56px;
       height: 64px;
     }
+
+    .logo-dark {
+      margin: 18px 48px 0 72px;
+      width: 56px;
+      height: 64px;
+=    }
   }
 </style>
