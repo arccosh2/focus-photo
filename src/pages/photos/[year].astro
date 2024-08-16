@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getVisuals } from "../../library/microcms";
 import { REPRESENTATIVE_IMAGES } from "../../utils/constants";
 
 export function getStaticPaths() {
@@ -10,8 +11,28 @@ export function getStaticPaths() {
   });
 }
 
+const response = await getVisuals();
+
 const { year } = Astro.params;
+
+const visuals = response.contents.map((visual) => visual);
+const groupedVisuals = visuals.filter(
+  (visual) => visual.year.toString() === year,
+);
+
 const pageTitle = "photos";
 ---
 
-<BaseLayout pageTitle={`${pageTitle} in ${year}`} />
+<BaseLayout pageTitle={`${pageTitle} in ${year}`}>
+  {
+    groupedVisuals.length === 0 ? (
+      <p>No Contents</p>
+    ) : (
+      <div>
+        {response.contents.map((visual) => (
+          <img src={visual.photo.url} />
+        ))}
+      </div>
+    )
+  }
+</BaseLayout>
