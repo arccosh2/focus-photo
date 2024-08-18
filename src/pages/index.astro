@@ -18,7 +18,7 @@ const IMAGE_HEIGHT_SP = "160px";
       {
         REPRESENTATIVE_IMAGES.map((image) => (
           <div class="image-wrapper">
-            <a href={`/photos/${image.year}`}>
+            <a href={`/photos/${image.year}`} data-astro-reload>
               <img
                 class="representative-image"
                 src={image.img.src}

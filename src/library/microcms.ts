@@ -13,7 +13,7 @@ type Tag =
   | "trip"
   | "other";
 
-interface Visual {
+export interface Visual {
   id: string;
   title: string;
   photo: {
@@ -23,7 +23,7 @@ interface Visual {
   };
   caption: string;
   year: number;
-  tag: Tag[];
+  tags: Tag[];
   createdAt: string;
   updatedAt: string;
   publishedAt: string;

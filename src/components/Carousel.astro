@@ -1,0 +1,144 @@
+---
+import type { Visual } from "../library/microcms";
+
+interface Props {
+  visuals: Visual[];
+}
+
+const { visuals } = Astro.props;
+
+const imgUrls = visuals
+  .map((visual) => visual.photo)
+  .map((img) => img.url + "?w=650");
+---
+
+<div class="slide-wrapper">
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      {
+        imgUrls.map((url: string) => (
+          <div class="swiper-slide">
+            <img class="swiper-img" src={url} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  {
+    visuals.map((visual) => (
+      <div class="content-text">
+        <h3 class="title">{visual.title}</h3>
+        <p class="caption">{visual.caption}</p>
+        {visual.tags.map((tag) => (
+          <p>{`#${tag}`}</p>
+        ))}
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .slide-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .swiper {
+    width: 1200px;
+    border-radius: 48px;
+    animation: fadeIn 0.5s;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+  }
+
+  .swiper-slide img {
+    width: 590px;
+    height: 393px;
+    border-radius: 48px;
+  }
+
+  .swiper-slide-prev {
+    width: 30%;
+  }
+  .swiper-slide-next {
+    width: 30%;
+  }
+
+  .content-text {
+    display: none;
+    margin-top: 40px;
+    width: 590px;
+    animation: fadeIn 0.5s;
+  }
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .caption {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+</style>
+
+<script>
+  import Swiper from "swiper";
+  import "swiper/css";
+  import "swiper/css/mousewheel";
+
+  const swiper = new Swiper(".swiper", {
+    slidesPerView: 2,
+    speed: 600,
+    spaceBetween: 6,
+    breakpoints: {
+      690: {
+        spaceBetween: 8,
+      },
+      1280: {
+        spaceBetween: 20,
+      },
+    },
+    centeredSlides: true,
+    slideToClickedSlide: true,
+    keyboard: {
+      enabled: true,
+    },
+  });
+
+  const textElements = Array.from(
+    document.getElementsByClassName(
+      "content-text",
+    ) as HTMLCollectionOf<HTMLElement>,
+  );
+
+  textElements[0].style.display = "inline-block";
+
+  const handleSlideChange = (activeIndex: number) => {
+    textElements.map((element, index) => {
+      if (index === activeIndex) {
+        element.style.display = "inline-block";
+      } else {
+        element.style.display = "none";
+      }
+    });
+  };
+
+  swiper.on("slideChangeTransitionStart", () =>
+    handleSlideChange(swiper.activeIndex),
+  );
+</script>

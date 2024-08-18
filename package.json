@@ -19,7 +19,9 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sharp": "^0.33.4",
-    "typescript": "^5.5.3"
+    "swiper": "^11.1.9",
+    "typescript": "^5.5.3",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
     "prettier": "^3.3.3",
