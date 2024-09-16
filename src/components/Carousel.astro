@@ -18,7 +18,7 @@ const imgUrls = visuals
       {
         imgUrls.map((url: string) => (
           <div class="swiper-slide">
-            <img class="swiper-img" src={url} />
+            <img src={url} />
           </div>
         ))
       }
@@ -30,7 +30,7 @@ const imgUrls = visuals
         <h3 class="title">{visual.title}</h3>
         <p class="caption">{visual.caption}</p>
         {visual.tags.map((tag) => (
-          <p>{`#${tag}`}</p>
+          <p class="tag">{`#${tag}`}</p>
         ))}
       </div>
     ))
@@ -55,7 +55,7 @@ const imgUrls = visuals
   }
 
   .swiper {
-    width: 1200px;
+    width: 1000px;
     border-radius: 48px;
     animation: fadeIn 0.5s;
   }
@@ -66,8 +66,8 @@ const imgUrls = visuals
   }
 
   .swiper-slide img {
-    width: 590px;
-    height: 393px;
+    width: 490px;
+    height: 327px;
     border-radius: 48px;
   }
 
@@ -81,7 +81,7 @@ const imgUrls = visuals
   .content-text {
     display: none;
     margin-top: 40px;
-    width: 590px;
+    width: 490px;
     animation: fadeIn 0.5s;
   }
 
@@ -92,14 +92,26 @@ const imgUrls = visuals
 
   .caption {
     font-size: 20px;
+    color: #3c3c3c;
     margin-bottom: 20px;
+  }
+
+  .tag {
+    color: #3c3c3c;
+  }
+
+  :global(.dark) .caption {
+    color: #cccccc;
+  }
+
+  :global(.dark) .tag {
+    color: #cccccc;
   }
 </style>
 
 <script>
-  import Swiper from "swiper";
+  import Swiper from "swiper/bundle";
   import "swiper/css";
-  import "swiper/css/mousewheel";
 
   const swiper = new Swiper(".swiper", {
     slidesPerView: 2,
@@ -115,6 +127,7 @@ const imgUrls = visuals
     },
     centeredSlides: true,
     slideToClickedSlide: true,
+    mousewheel: true,
     keyboard: {
       enabled: true,
     },
