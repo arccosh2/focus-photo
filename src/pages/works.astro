@@ -1,6 +1,5 @@
 ---
-import Cards from "../components/Cards.astro";
-import Carousel from "../components/Carousel.astro";
+import { Cards } from "../components/Cards";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getVisuals } from "../library/microcms";
 
@@ -18,7 +17,7 @@ const visuals = response.contents.map((visual) => visual);
   {
     visuals.length !== 0 && (
       <div class="wrapper">
-        <Cards visuals={visuals} />
+        <Cards visuals={visuals} client:only="react" />
       </div>
     )
   }
