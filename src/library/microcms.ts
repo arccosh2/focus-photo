@@ -1,4 +1,3 @@
-import type { MicroCMSQueries } from "microcms-js-sdk";
 import { createClient } from "microcms-js-sdk";
 
 type Tag =

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import type { Visual } from "../library/microcms";
 import { useAnimate } from "framer-motion";
 import styles from "../styles/card.module.css";
