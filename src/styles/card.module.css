@@ -18,12 +18,13 @@
 
 .thumbnails {
   display: flex;
+  position: relative;
   justify-content: flex-start;
+  align-items: flex-start;
   gap: 10px;
   width: 960px;
-  height: 90px;
+  height: 100px;
   margin-bottom: 16px;
-  border-radius: 8px;
   overflow-x: scroll;
   overflow-y: hidden;
   -ms-overflow-style: none;
@@ -54,4 +55,17 @@
   width: 960px;
   height: 540px;
   border-radius: 8px;
+}
+
+.underBar {
+  position: absolute;
+  width: 160px;
+  height: 5px;
+  top: 94px;
+  background-color: #846e6e;
+  border-radius: 4px;
+}
+
+:global(.dark) .underBar {
+  background-color: #4a454e;
 }
