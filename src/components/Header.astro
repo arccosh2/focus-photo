@@ -11,7 +11,11 @@ import ThemeIcon from "./ThemeIcon.astro";
         <img class="logo-light" src={logoLight.src} alt="light mode logo" />
         <img class="logo-dark" src={logoDark.src} alt="dark mode logo" />
       </a>
-      <ThemeIcon />
+      <div class="nav-links">
+        <a href="/about" class="link">ABOUT</a>
+        <a href="/works" class="link" data-astro-reload>WORKS</a>
+        <ThemeIcon />
+      </div>
     </div>
   </nav>
 </header>
@@ -19,18 +23,35 @@ import ThemeIcon from "./ThemeIcon.astro";
 <style>
   .nav-contents {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .nav-links {
+    display: flex;
     justify-content: center;
-    align-items: baseline;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .link {
+    color: #3c3c3c;
+    padding-right: 28px;
+  }
+
+  :global(.dark) .link {
+    color: #cccccc;
   }
 
   .logo-light {
-    margin: 12px 108px 0 140px;
+    margin-top: 12px;
     width: 72px;
     height: 83px;
   }
 
   .logo-dark {
-    margin: 12px 108px 0 140px;
+    margin-top: 12px;
     width: 72px;
     height: 83px;
     display: none;
@@ -45,13 +66,13 @@ import ThemeIcon from "./ThemeIcon.astro";
 
   @media (min-width: 960px) and (max-width: 1280px) {
     .logo-light {
-      margin: 16px 96px 0 120px;
+      margin-top: 16px;
       width: 64px;
       height: 74px;
     }
 
     .logo-dark {
-      margin: 16px 96px 0 120px;
+      margin-top: 16px;
       width: 64px;
       height: 74px;
     }
@@ -59,13 +80,13 @@ import ThemeIcon from "./ThemeIcon.astro";
 
   @media (max-width: 960px) {
     .logo-light {
-      margin: 18px 56px 0 72px;
+      margin-top: 18px;
       width: 40px;
       height: 46px;
     }
 
     .logo-dark {
-      margin: 18px 56px 0 72px;
+      margin-top: 18px;
       width: 40px;
       height: 46px;
     }

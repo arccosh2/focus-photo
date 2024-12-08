@@ -16,6 +16,8 @@ const ICON_SIZE_SP = "16px";
   #themeToggle {
     border: none;
     background: none;
+    width: var(--ICON_SIZE_PC);
+    height: var(--ICON_SIZE_PC);
   }
 
   .light-mode-icon {
@@ -37,6 +39,11 @@ const ICON_SIZE_SP = "16px";
   }
 
   @media (min-width: 960px) and (max-width: 1280px) {
+    #themeToggle {
+      width: var(--ICON_SIZE_TAB);
+      height: var(--ICON_SIZE_TAB);
+    }
+
     .light-mode-icon {
       width: var(--ICON_SIZE_TAB);
       height: var(--ICON_SIZE_TAB);
@@ -49,6 +56,11 @@ const ICON_SIZE_SP = "16px";
   }
 
   @media (max-width: 960px) {
+    #themeToggle {
+      width: var(--ICON_SIZE_SP);
+      height: var(--ICON_SIZE_SP);
+    }
+
     .light-mode-icon {
       width: var(--ICON_SIZE_SP);
       height: var(--ICON_SIZE_SP);

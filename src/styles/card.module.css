@@ -1,0 +1,71 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.wrapper {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation: fadeIn 0.3s;
+}
+
+.thumbnails {
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  width: 960px;
+  height: 100px;
+  margin-bottom: 16px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.thumbnails::-webkit-scrollbar {
+  display: none;
+}
+
+.thumbnail {
+  position: relative;
+  width: 160px;
+  height: 90px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.inActiveThumbnail {
+  width: 160px;
+  height: 90px;
+  border-radius: 8px;
+  overflow: hidden;
+  opacity: 0.4;
+}
+
+.mainImage {
+  width: 960px;
+  height: 540px;
+  border-radius: 8px;
+}
+
+.underBar {
+  position: absolute;
+  width: 160px;
+  height: 5px;
+  top: 94px;
+  background-color: #846e6e;
+  border-radius: 4px;
+}
+
+:global(.dark) .underBar {
+  background-color: #4a454e;
+}

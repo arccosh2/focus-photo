@@ -1,0 +1,32 @@
+---
+import { Cards } from "../components/Cards";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getVisuals } from "../library/microcms";
+
+const pageTitle = "photos";
+const { year } = Astro.params;
+
+const response = await getVisuals();
+
+const visuals = response.contents.map((visual) => visual);
+---
+
+<BaseLayout pageTitle={`${pageTitle} in ${year}`}>
+  {visuals.length === 0 && <p>No Contents</p>}
+
+  {
+    visuals.length !== 0 && (
+      <div class="wrapper">
+        <Cards visuals={visuals} client:only="react" />
+      </div>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }
+</style>
