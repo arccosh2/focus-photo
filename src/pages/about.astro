@@ -5,5 +5,41 @@ const pageTitle = "About Page";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <p>About Page</p>
+  <div class="introduction">
+    <h1>Hi,</h1>
+    <h2>This is the place for posting my photos.</h2>
+    <p>
+      I've taken photos since I was a university student.<br />The reason I
+      started it was something trivial, <br />but I got interested in capturing
+      the moment.<br />I am also a geologist. <br />There are so many places in
+      Japan with fascinating geological formations. <br />I want to capture
+      landscapes that have geological significance.<br />Anyway, just look
+      around, and enjoy my works!
+    </p>
+  </div>
 </BaseLayout>
+
+<style>
+  .introduction {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    margin-top: 56px;
+  }
+
+  .introduction > h1 {
+    font-size: 40px;
+  }
+
+  .introduction > h2 {
+    font-size: 32px;
+  }
+
+  .introduction > p {
+    margin-top: 16px;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+  }
+</style>
