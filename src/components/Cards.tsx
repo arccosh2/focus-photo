@@ -35,6 +35,10 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
 
   return (
     <div className={styles.wrapper}>
+      <img
+        src={visuals[activeIndex].photo.url + "?fit=crop&w=960&h=540"}
+        className={styles.mainImage}
+      />
       <div className={styles.thumbnails}>
         {visuals.map((visual, index) => (
           <button onClick={() => handleClick(index)}>
@@ -55,10 +59,6 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
         ))}
         <span className={styles.underBar} ref={underBar} />
       </div>
-      <img
-        src={visuals[activeIndex].photo.url + "?fit=crop&w=960&h=540"}
-        className={styles.mainImage}
-      />
     </div>
   );
 };
