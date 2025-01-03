@@ -6,12 +6,12 @@ import ThemeIcon from "./ThemeIcon.astro";
 
 <header>
   <nav>
-    <div class="nav-contents">
+    <div class="nav_contents">
       <a href="/">
-        <img class="logo-light" src={logoLight.src} alt="light mode logo" />
-        <img class="logo-dark" src={logoDark.src} alt="dark mode logo" />
+        <img class="logo_light" src={logoLight.src} alt="light mode logo" />
+        <img class="logo_dark" src={logoDark.src} alt="dark mode logo" />
       </a>
-      <div class="nav-links">
+      <div class="nav_links">
         <a href="/about" class="link">ABOUT</a>
         <a href="/works" class="link" data-astro-reload>WORKS</a>
         <ThemeIcon />
@@ -21,13 +21,13 @@ import ThemeIcon from "./ThemeIcon.astro";
 </header>
 
 <style>
-  .nav-contents {
+  .nav_contents {
     display: flex;
     justify-content: space-around;
     align-items: center;
   }
 
-  .nav-links {
+  .nav_links {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,34 +44,34 @@ import ThemeIcon from "./ThemeIcon.astro";
     color: #cccccc;
   }
 
-  .logo-light {
+  .logo_light {
     margin-top: 12px;
     width: 72px;
     height: 83px;
   }
 
-  .logo-dark {
+  .logo_dark {
     margin-top: 12px;
     width: 72px;
     height: 83px;
     display: none;
   }
 
-  :global(.dark) .logo-light {
+  :global(.dark) .logo_light {
     display: none;
   }
-  :global(.dark) .logo-dark {
+  :global(.dark) .logo_dark {
     display: inline;
   }
 
   @media (min-width: 960px) and (max-width: 1280px) {
-    .logo-light {
+    .logo_light {
       margin-top: 16px;
       width: 64px;
       height: 74px;
     }
 
-    .logo-dark {
+    .logo_dark {
       margin-top: 16px;
       width: 64px;
       height: 74px;
@@ -79,13 +79,13 @@ import ThemeIcon from "./ThemeIcon.astro";
   }
 
   @media (max-width: 960px) {
-    .logo-light {
+    .logo_light {
       margin-top: 18px;
       width: 40px;
       height: 46px;
     }
 
-    .logo-dark {
+    .logo_dark {
       margin-top: 18px;
       width: 40px;
       height: 46px;

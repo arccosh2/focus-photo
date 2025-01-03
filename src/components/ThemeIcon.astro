@@ -8,8 +8,8 @@ const ICON_SIZE_SP = "16px";
 ---
 
 <button id="themeToggle">
-  <img class="light-mode-icon" src={lightModeIcon.src} alt="light mode" />
-  <img class="dark-mode-icon" src={darkModeIcon.src} alt="dark mode" />
+  <img class="light_mode_icon" src={lightModeIcon.src} alt="light mode" />
+  <img class="dark_mode_icon" src={darkModeIcon.src} alt="dark mode" />
 </button>
 
 <style define:vars={{ ICON_SIZE_PC, ICON_SIZE_TAB, ICON_SIZE_SP }}>
@@ -21,21 +21,21 @@ const ICON_SIZE_SP = "16px";
     height: var(--ICON_SIZE_PC);
   }
 
-  .light-mode-icon {
+  .light_mode_icon {
     width: var(--ICON_SIZE_PC);
     height: var(--ICON_SIZE_PC);
   }
 
-  .dark-mode-icon {
+  .dark_mode_icon {
     width: var(--ICON_SIZE_PC);
     height: var(--ICON_SIZE_PC);
     display: none;
   }
 
-  :global(.dark) .light-mode-icon {
+  :global(.dark) .light_mode_icon {
     display: none;
   }
-  :global(.dark) .dark-mode-icon {
+  :global(.dark) .dark_mode_icon {
     display: inline;
   }
 
@@ -45,12 +45,12 @@ const ICON_SIZE_SP = "16px";
       height: var(--ICON_SIZE_TAB);
     }
 
-    .light-mode-icon {
+    .light_mode_icon {
       width: var(--ICON_SIZE_TAB);
       height: var(--ICON_SIZE_TAB);
     }
 
-    .dark-mode-icon {
+    .dark_mode_icon {
       width: var(--ICON_SIZE_TAB);
       height: var(--ICON_SIZE_TAB);
     }
@@ -62,12 +62,12 @@ const ICON_SIZE_SP = "16px";
       height: var(--ICON_SIZE_SP);
     }
 
-    .light-mode-icon {
+    .light_mode_icon {
       width: var(--ICON_SIZE_SP);
       height: var(--ICON_SIZE_SP);
     }
 
-    .dark-mode-icon {
+    .dark_mode_icon {
       width: var(--ICON_SIZE_SP);
       height: var(--ICON_SIZE_SP);
     }

@@ -37,7 +37,7 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
     <div className={styles.wrapper}>
       <img
         src={visuals[activeIndex].photo.url + "?fit=crop&w=960&h=540"}
-        className={styles.mainImage}
+        className={styles.main_image}
       />
       <div className={styles.thumbnails}>
         {visuals.map((visual, index) => (
@@ -46,7 +46,7 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
               className={
                 activeIndex === index
                   ? styles.thumbnail
-                  : styles.inActiveThumbnail
+                  : styles.in_active_thumbnail
               }
             >
               <img
@@ -57,7 +57,7 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
             </div>
           </button>
         ))}
-        <span className={styles.underBar} ref={underBar} />
+        <span className={styles.under_bar} ref={underBar} />
       </div>
     </div>
   );
