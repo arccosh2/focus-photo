@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import profileIcon from "../assets/common/profileIcon.webp";
 
 const pageTitle = "About Page";
 ---
@@ -8,14 +9,17 @@ const pageTitle = "About Page";
   <div class="introduction">
     <h1>Hi,</h1>
     <h2>This is the place for posting my photos.</h2>
-    <p>
+    <p class="text">
       I've taken photos since I was a university student.<br />The reason I
       started it was something trivial, <br />but I got interested in capturing
-      the moment.<br />I am also a geologist. <br />There are so many places in
-      Japan with fascinating geological formations. <br />I want to capture
-      landscapes that have geological significance.<br />Anyway, just look
-      around, and enjoy my works!
+      the moment.<br />I'd also studied geology (espacially petrology and
+      volcanology). <br />There are so many places in Japan with fascinating
+      geological formations. <br />I want to capture landscapes that have
+      geological significance.<br />Anyway, just look around, and enjoy my
+      works!
     </p>
+    <img src={profileIcon.src} width="128px" height="auto" />
+    <p class="ownerName">Haruna Nishita</p>
   </div>
 </BaseLayout>
 
@@ -24,9 +28,11 @@ const pageTitle = "About Page";
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
     width: 100%;
-    margin-top: 56px;
+    margin-top: 40px;
+    padding: 0 24px;
   }
 
   .introduction > h1 {
@@ -37,9 +43,20 @@ const pageTitle = "About Page";
     font-size: 32px;
   }
 
-  .introduction > p {
+  .text {
     margin-top: 16px;
     font-size: 18px;
     letter-spacing: 0.1em;
+  }
+
+  .introduction > img {
+    margin-top: 32px;
+    border-radius: 50%;
+  }
+
+  .ownerName {
+    margin-top: 4px;
+    font-size: 20px;
+    font-weight: 600;
   }
 </style>

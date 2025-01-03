@@ -14,6 +14,8 @@ const visuals = response.contents.map((visual) => visual);
 <BaseLayout pageTitle={`${pageTitle} in ${year}`}>
   {visuals.length === 0 && <p>No Contents</p>}
 
+  <!-- TODO: 画像のフェッチが終わってない間、スケルトンスクリーンを表示する -->
+
   {
     visuals.length !== 0 && (
       <div class="wrapper">
