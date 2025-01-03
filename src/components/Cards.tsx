@@ -1,7 +1,7 @@
 import { useState } from "react";
-import type { Visual } from "../library/microcms";
 import { useAnimate } from "framer-motion";
-import styles from "../styles/card.module.css";
+import styles from "src/styles/card.module.css";
+import type { Visual } from "src/library/microcms";
 
 interface Props {
   visuals: Visual[];
