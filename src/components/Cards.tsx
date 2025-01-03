@@ -1,7 +1,7 @@
 import { useState } from "react";
-import type { Visual } from "../library/microcms";
 import { useAnimate } from "framer-motion";
-import styles from "../styles/card.module.css";
+import styles from "src/styles/card.module.css";
+import type { Visual } from "src/library/microcms";
 
 interface Props {
   visuals: Visual[];
@@ -35,6 +35,10 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
 
   return (
     <div className={styles.wrapper}>
+      <img
+        src={visuals[activeIndex].photo.url + "?fit=crop&w=960&h=540"}
+        className={styles.main_image}
+      />
       <div className={styles.thumbnails}>
         {visuals.map((visual, index) => (
           <button onClick={() => handleClick(index)}>
@@ -42,7 +46,7 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
               className={
                 activeIndex === index
                   ? styles.thumbnail
-                  : styles.inActiveThumbnail
+                  : styles.in_active_thumbnail
               }
             >
               <img
@@ -53,12 +57,8 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
             </div>
           </button>
         ))}
-        <span className={styles.underBar} ref={underBar} />
+        <span className={styles.under_bar} ref={underBar} />
       </div>
-      <img
-        src={visuals[activeIndex].photo.url + "?fit=crop&w=960&h=540"}
-        className={styles.mainImage}
-      />
     </div>
   );
 };

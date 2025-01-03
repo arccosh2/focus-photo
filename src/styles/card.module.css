@@ -1,4 +1,4 @@
-@keyframes fadeIn {
+@keyframes fade_in {
   from {
     opacity: 0;
   }
@@ -13,7 +13,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  animation: fadeIn 0.3s;
+  animation: fade_in 0.3s;
 }
 
 .thumbnails {
@@ -23,8 +23,8 @@
   align-items: flex-start;
   gap: 10px;
   width: 960px;
-  height: 100px;
-  margin-bottom: 16px;
+  height: 102px;
+  margin-top: 16px;
   overflow-x: scroll;
   overflow-y: hidden;
   -ms-overflow-style: none;
@@ -43,7 +43,7 @@
   overflow: hidden;
 }
 
-.inActiveThumbnail {
+.in_active_thumbnail {
   width: 160px;
   height: 90px;
   border-radius: 8px;
@@ -51,21 +51,21 @@
   opacity: 0.4;
 }
 
-.mainImage {
+.main_image {
   width: 960px;
   height: 540px;
   border-radius: 8px;
 }
 
-.underBar {
+.under_bar {
   position: absolute;
   width: 160px;
   height: 5px;
-  top: 94px;
+  top: 96px;
   background-color: #846e6e;
   border-radius: 4px;
 }
 
-:global(.dark) .underBar {
-  background-color: #4a454e;
+:global(.dark) .under_bar {
+  background-color: #2b292f;
 }

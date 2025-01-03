@@ -1,7 +1,7 @@
 ---
-import { Cards } from "../components/Cards";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { getVisuals } from "../library/microcms";
+import { Cards } from "src/components/Cards";
+import BaseLayout from "src/layouts/BaseLayout.astro";
+import { getVisuals } from "src/library/microcms";
 
 const pageTitle = "photos";
 const { year } = Astro.params;
@@ -13,6 +13,8 @@ const visuals = response.contents.map((visual) => visual);
 
 <BaseLayout pageTitle={`${pageTitle} in ${year}`}>
   {visuals.length === 0 && <p>No Contents</p>}
+
+  <!-- TODO: 画像のフェッチが終わってない間、スケルトンスクリーンを表示する -->
 
   {
     visuals.length !== 0 && (

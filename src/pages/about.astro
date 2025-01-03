@@ -1,9 +1,62 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from "src/layouts/BaseLayout.astro";
+import profileIcon from "src/assets/common/profileIcon.webp";
 
 const pageTitle = "About Page";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <p>About Page</p>
+  <div class="introduction">
+    <h1>Hi,</h1>
+    <h2>This is the place for posting my photos.</h2>
+    <p class="text">
+      I've taken photos since I was a university student.<br />The reason I
+      started it was something trivial, <br />but I got interested in capturing
+      the moment.<br />I'd also studied geology (espacially petrology and
+      volcanology). <br />There are so many places in Japan with fascinating
+      geological formations. <br />I want to capture landscapes that have
+      geological significance.<br />Anyway, just look around, and enjoy my
+      works!
+    </p>
+    <img src={profileIcon.src} width="128px" height="auto" />
+    <p class="owner_name">Haruna Nishita</p>
+  </div>
 </BaseLayout>
+
+<style>
+  .introduction {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin-top: 40px;
+    padding: 0 24px;
+  }
+
+  .introduction > h1 {
+    font-size: 40px;
+  }
+
+  .introduction > h2 {
+    font-size: 32px;
+  }
+
+  .text {
+    margin-top: 16px;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+  }
+
+  .introduction > img {
+    margin-top: 32px;
+    border-radius: 50%;
+  }
+
+  .owner_name {
+    margin-top: 4px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+</style>
