@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAnimate } from "framer-motion";
 import styles from "src/styles/card.module.css";
 import type { Visual } from "src/library/microcms";
+import { Modal } from "./Modal";
 
 interface Props {
   visuals: Visual[];
@@ -35,6 +36,7 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
 
   return (
     <div className={styles.wrapper}>
+      <Modal visual={visuals[activeIndex]} />
       <img
         src={visuals[activeIndex].photo.url + "?fit=crop&w=960&h=540"}
         className={styles.main_image}
