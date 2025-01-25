@@ -1,37 +1,29 @@
 import { useState } from "react";
-import openInFullIcon from "src/assets/common/ic_open-in-full.svg";
 import closeIcon from "src/assets/common/ic_close.svg";
-import type { Visual } from "src/library/microcms";
+import styles from "src/styles/modal.module.css";
 
 interface Props {
-  visual: Visual;
+  children: React.ReactNode;
+  isOpen: boolean;
+  handleModalClose: () => void;
 }
 
-export const Modal: React.FC<Props> = ({ visual }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+export const Modal: React.FC<Props> = ({
+  children,
+  isOpen,
+  handleModalClose,
+}) => {
+  if (!isOpen) return null;
 
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
-
-  return isOpen ? (
-    <div className="back_drop">
-      <div className="contents_area">
-        <button className="modal_button" onClick={handleClick}>
-          <img src={closeIcon.src} className="close_icon" />
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.back_drop} onClick={handleModalClose}></div>
+      <div className={styles.contents_area}>
+        <button className={styles.close_button} onClick={handleModalClose}>
+          <img src={closeIcon.src} className={styles.close_icon} />
         </button>
-
-        <h2>{visual.title}</h2>
-        <p>{visual.caption}</p>
-        <small>taken in {visual.year}</small>
-        {visual.tags.map((tag) => (
-          <small>#{tag}</small>
-        ))}
+        {children}
       </div>
     </div>
-  ) : (
-    <button className="modal_button" onClick={handleClick}>
-      <img src={openInFullIcon.src} className="open_in_full_icon" />
-    </button>
   );
 };
