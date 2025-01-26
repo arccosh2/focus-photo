@@ -40,13 +40,13 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
   const handleModalOpen = () => setIsModalOpen(true);
   const handleModalClose = () => setIsModalOpen(false);
 
-  const activeVisulal = visuals[activeIndex];
+  const activeVisual = visuals[activeIndex];
 
   return (
     <>
       <div className={styles.wrapper}>
         <img
-          src={activeVisulal.photo.url + "?fit=crop&w=960&h=540"}
+          src={activeVisual.photo.url + "?fit=crop&w=960&h=540"}
           className={styles.main_image}
         />
         {!isModalOpen && (
@@ -81,10 +81,10 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
       </div>
 
       <Modal isOpen={isModalOpen} handleModalClose={handleModalClose}>
-        <h2 className={styles.title}>{activeVisulal.title}</h2>
-        <p className={styles.caption}>{activeVisulal.caption}</p>
-        <small>taken in {activeVisulal.year}</small>
-        {activeVisulal.tags.map((tag, index) => (
+        <h2 className={styles.title}>{activeVisual.title}</h2>
+        <p className={styles.caption}>{activeVisual.caption}</p>
+        <small>taken in {activeVisual.year}</small>
+        {activeVisual.tags.map((tag, index) => (
           <small key={tag + `_${index}`} className={styles.tag}>
             #{tag}
           </small>
