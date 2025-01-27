@@ -1,39 +1,14 @@
-import { defineConfig, defineGlobalStyles } from "@pandacss/dev";
-
-// const globalCss = defineGlobalStyles({
-//   html: {
-//     height: "100vh",
-//     fontFamily: ["sans-serif", "Hiragino Kaku Gothic ProN", "Hiragino Sans"],
-//     color: "#404040",
-//     BackgroundAttachment: "fixed",
-//     background:
-//       "radial-gradient(circle, rgba(255, 205, 206, 1) 0%,rgba(178, 239, 255, 1) 100%)",
-//     _osDark: {
-//       background:
-//         "linear-gradient(180deg, #19054e 0%, #282f4e 50%, #784242 100%)",
-//     },
-//   },
-//   body: {
-//     width: "100%",
-//     height: "100%",
-//     overflowX: "hidden",
-//   },
-//   button: {
-//     cursor: "pointer",
-//     backgroundColor: "transparent",
-//     border: "none",
-//   },
-//   a: {
-//     textDecoration: "none",
-//   },
-// });
+import { defineConfig } from "@pandacss/dev";
 
 export default defineConfig({
   // Whether to use css reset
   preflight: true,
 
   // Where to look for your css declarations
-  include: ["./src/**/*.{js,jsx,ts,tsx}", "./pages/**/*.{js,jsx,ts,tsx}"],
+  include: [
+    "./src/**/*.{ts,tsx,js,jsx,astro}",
+    "./pages/**/*.{ts,tsx,js,jsx,astro}",
+  ],
 
   // Files to exclude
   exclude: [],
@@ -41,6 +16,9 @@ export default defineConfig({
   // Useful for theme customization
   theme: {
     extend: {
+      breakpoints: {
+        "3xl": "1800px",
+      },
       tokens: {
         colors: {
           neutral600: { value: "#525252" },
