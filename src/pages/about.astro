@@ -1,13 +1,25 @@
 ---
+import "../index.css";
 import BaseLayout from "src/layouts/BaseLayout.astro";
 import profileIcon from "src/assets/common/profileIcon.webp";
+import { css } from "styled-system/css";
 
 const pageTitle = "About Page";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <div class="introduction">
-    <h1>Hi,</h1>
+  <div
+    class={css({
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      textAlign: "center",
+      width: "100%",
+      marginTop: { base: "40px", lg: "32px", md: "24px" },
+      padding: "0 24px",
+    })}
+  >
+    <h1 class={css({ color: "red" })}>Hi,</h1>
     <h2>This is the place for posting my photos.</h2>
     <p class="text">
       I've taken photos since I was a university student.<br />The reason I
@@ -24,17 +36,6 @@ const pageTitle = "About Page";
 </BaseLayout>
 
 <style>
-  .introduction {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    margin-top: 40px;
-    padding: 0 24px;
-  }
-
   .introduction > h1 {
     font-size: 40px;
   }
