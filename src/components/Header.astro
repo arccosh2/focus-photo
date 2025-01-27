@@ -10,7 +10,7 @@ import { css } from "styled-system/css";
     <div
       class={css({
         display: "flex",
-        justifyContent: "space-around",
+        justifyContent: { base: "space-between", md: "space-around" },
         alignItems: "center",
       })}
     >
@@ -25,6 +25,7 @@ import { css } from "styled-system/css";
               xl: "83px",
             },
             mt: { base: "18px", mdToXl: "16px", xl: "12px" },
+            ml: { base: "24px", md: "0" },
           })}
           src={logoLight.src}
           alt="light mode logo"
@@ -39,6 +40,7 @@ import { css } from "styled-system/css";
               xl: "83px",
             },
             mt: { base: "18px", mdToXl: "16px", xl: "12px" },
+            ml: { base: "24px", md: "0" },
           })}
           src={logoDark.src}
           alt="dark mode logo"
