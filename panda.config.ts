@@ -21,8 +21,10 @@ export default defineConfig({
       },
       tokens: {
         colors: {
+          neutral700: { value: "#404040" },
           neutral600: { value: "#525252" },
           neutral300: { value: "#f5f5f5" },
+          neutral200: { value: "#e5e5e5" },
           neutral100: { value: "#f5f5f5" },
           red900: { value: "#7f1d1d" },
           indigo950: { value: "#1e1b4b" },
@@ -50,6 +52,12 @@ export default defineConfig({
             value: {
               base: "{colors.neutral600}",
               _dark: "{colors.neutral100}",
+            },
+          },
+          profile: {
+            value: {
+              base: "{colors.neutral700}",
+              _dark: "{colors.neutral200}",
             },
           },
           footer: {

@@ -1,24 +1,49 @@
 ---
 import BaseLayout from "src/layouts/BaseLayout.astro";
 import { REPRESENTATIVE_IMAGES } from "src/utils/constants";
+import { css } from "styled-system/css";
 
 const pageTitle = "Index Page";
-
-const IMAGE_WIDTH_PC = "400px";
-const IMAGE_HEIGHT_PC = "267px";
-const IMAGE_WIDTH_TAB = "360px";
-const IMAGE_HEIGHT_TAB = "240px";
-const IMAGE_WIDTH_SP = "240px";
-const IMAGE_HEIGHT_SP = "160px";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <div class="contents">
-    <div class="images_wrapper">
+  <div
+    class={css({
+      display: "flex",
+      width: "100%",
+      height: {
+        base: "100svh",
+        lg: "600px",
+        "2xl": "700px",
+        "3xl": "910px",
+      },
+      alignItems: "center",
+      justifyContent: "center",
+    })}
+  >
+    <div
+      class={css({
+        display: "grid",
+        width: { base: "1000px", "3xl": "1300px" },
+        height: {
+          base: "670px",
+          "3xl": "880px",
+        },
+        mt: "32px",
+        hideBelow: "xl",
+        gridAutoFlow: "dense",
+        gap: "1rem",
+      })}
+    >
       {
         REPRESENTATIVE_IMAGES.map((image) => (
           <img
-            class="representative_image"
+            class={css({
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              borderRadius: "8px",
+            })}
             src={image.img.src}
             alt={image.alt}
           />
@@ -28,45 +53,8 @@ const IMAGE_HEIGHT_SP = "160px";
   </div>
 </BaseLayout>
 
-<style
-  define:vars={{
-    IMAGE_WIDTH_PC,
-    IMAGE_HEIGHT_PC,
-    IMAGE_WIDTH_TAB,
-    IMAGE_HEIGHT_TAB,
-    IMAGE_WIDTH_SP,
-    IMAGE_HEIGHT_SP,
-  }}
->
-  .contents {
-    width: 100%;
-    height: 640px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .images_wrapper {
-    display: grid;
-    grid-auto-flow: dense;
-    gap: 1rem;
-  }
-
-  .representative_image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    .images_wrapper {
-      max-width: 1100px;
-      grid-template-rows: 260px 180px 160px auto;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-
+<style>
+  @media screen and (min-width: 1024px) {
     img:first-child {
       grid-column: 1/2;
       grid-row: 1/3;
@@ -86,40 +74,6 @@ const IMAGE_HEIGHT_SP = "160px";
     img:nth-child(5) {
       grid-column: 2/4;
       grid-row: 2/4;
-    }
-  }
-
-  @media (min-width: 960px) and (max-width: 1279px) {
-    .contents {
-      height: 560px;
-    }
-
-    .representative_image {
-      width: var(--IMAGE_WIDTH_TAB);
-      height: var(--IMAGE_HEIGHT_TAB);
-    }
-  }
-
-  @media (max-width: 960px) {
-    .contents {
-      height: 960px;
-    }
-
-    .images_wrapper {
-      height: 900px;
-      grid-template-columns: repeat(1, auto);
-    }
-
-    .representative_image {
-      width: var(--IMAGE_WIDTH_SP);
-      height: var(--IMAGE_HEIGHT_SP);
-    }
-
-    .representative_image:first-child {
-      margin-top: 16px;
-    }
-    .representative_image:last-child {
-      margin-bottom: 24px;
     }
   }
 </style>

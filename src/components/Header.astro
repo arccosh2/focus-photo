@@ -24,7 +24,7 @@ import { css } from "styled-system/css";
               mdToXl: "74px",
               xl: "83px",
             },
-            mt: { base: "18px", mdToXl: "16px", xl: "12px" },
+            mt: { base: "12px", mdToXl: "16px", xl: "12px" },
             ml: { base: "24px", md: "0" },
           })}
           src={logoLight.src}
@@ -39,7 +39,7 @@ import { css } from "styled-system/css";
               mdToXl: "74px",
               xl: "83px",
             },
-            mt: { base: "18px", mdToXl: "16px", xl: "12px" },
+            mt: { base: "12px", mdToXl: "16px", xl: "12px" },
             ml: { base: "24px", md: "0" },
           })}
           src={logoDark.src}
@@ -60,12 +60,12 @@ import { css } from "styled-system/css";
           href="/about"
           class={css({
             color: "link",
-            hideBelow: "sm",
+            fontSize: { base: "xs", md: "sm" },
           })}>ABOUT</a
         >
         <a
           href="/works"
-          class={css({ color: "link", hideBelow: "sm" })}
+          class={css({ color: "link", fontSize: { base: "xs", md: "sm" } })}
           data-astro-reload>WORKS</a
         >
         <ThemeIcon />
