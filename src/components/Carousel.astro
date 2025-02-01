@@ -54,22 +54,24 @@ import { REPRESENTATIVE_IMAGES } from "src/utils/constants";
   import "swiper/css/effect-fade";
   import { Autoplay, EffectFade } from "swiper/modules";
 
-  const swiper = new Swiper(".swiper", {
-    autoplay: {
-      delay: 3000,
-    },
-    loop: true,
-    speed: 1700,
-    effect: "fade",
-    fadeEffect: {
-      crossFade: true,
-    },
-    slidesPerView: 1,
-    centeredSlides: true,
-    slideToClickedSlide: true,
-    keyboard: {
-      enabled: true,
-    },
-    modules: [Autoplay, EffectFade],
+  document.addEventListener("astro:page-load", () => {
+    const swiper = new Swiper(".swiper", {
+      autoplay: {
+        delay: 3000,
+      },
+      loop: true,
+      speed: 1700,
+      effect: "fade",
+      fadeEffect: {
+        crossFade: true,
+      },
+      slidesPerView: 1,
+      centeredSlides: true,
+      slideToClickedSlide: true,
+      keyboard: {
+        enabled: true,
+      },
+      modules: [Autoplay, EffectFade],
+    });
   });
 </script>
