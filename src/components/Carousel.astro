@@ -1,0 +1,75 @@
+---
+import { REPRESENTATIVE_IMAGES } from "src/utils/constants";
+---
+
+<div class="swiper">
+  <div class="swiper-wrapper">
+    {
+      REPRESENTATIVE_IMAGES.map((slide) => (
+        <div class="swiper-slide">
+          <img class="swiper-img" src={slide.img.src} alt={slide.alt} />
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .swiper {
+    width: 340px;
+    height: 500px;
+    margin-bottom: 160px;
+    border-radius: 8px;
+  }
+
+  .swiper-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .swiper {
+      width: 500px;
+      height: 700px;
+      margin-bottom: 180px;
+      border-radius: 12px;
+    }
+  }
+
+  @media screen and (max-width: 428px) {
+    .swiper {
+      width: 340px;
+      height: 500px;
+      margin-bottom: 150px;
+      border-radius: 8px;
+    }
+  }
+</style>
+
+<script>
+  import Swiper from "swiper";
+  import "swiper/css";
+  import "swiper/css/effect-fade";
+  import { Autoplay, EffectFade } from "swiper/modules";
+
+  const swiper = new Swiper(".swiper", {
+    autoplay: {
+      delay: 3000,
+    },
+    loop: true,
+    speed: 1700,
+    effect: "fade",
+    fadeEffect: {
+      crossFade: true,
+    },
+    slidesPerView: 1,
+    centeredSlides: true,
+    slideToClickedSlide: true,
+    keyboard: {
+      enabled: true,
+    },
+    modules: [Autoplay, EffectFade],
+  });
+</script>
