@@ -1,15 +1,35 @@
 ---
 import BaseLayout from "src/layouts/BaseLayout.astro";
 import profileIcon from "src/assets/common/profileIcon.webp";
+import { css } from "styled-system/css";
 
 const pageTitle = "About Page";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <div class="introduction">
-    <h1>Hi,</h1>
-    <h2>This is the place for posting my photos.</h2>
-    <p class="text">
+  <div
+    class={css({
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      textAlign: { base: "left", md: "center" },
+      width: "100%",
+      mt: { base: "40px", lg: "32px", md: "24px" },
+      mb: { base: "72px", lg: "48px", md: "40px" },
+      padding: "0 24px",
+    })}
+  >
+    <h1 class={css({ fontSize: { base: "lm", sm: "xl" } })}>
+      This is the place for posting my photos.
+    </h1>
+    <p
+      class={css({
+        mt: "16px",
+        fontSize: { base: "sm", sm: "md" },
+        letterSpacing: "0.1em",
+        lineHeight: "2",
+      })}
+    >
       I've taken photos since I was a university student.<br />The reason I
       started it was something trivial, <br />but I got interested in capturing
       the moment.<br />I'd also studied geology (espacially petrology and
@@ -18,45 +38,31 @@ const pageTitle = "About Page";
       geological significance.<br />Anyway, just look around, and enjoy my
       works!
     </p>
-    <img src={profileIcon.src} width="128px" height="auto" />
-    <p class="owner_name">Haruna Nishita</p>
+    <div
+      class={css({
+        mt: { base: "24px", md: "32px" },
+        borderRadius: "50%",
+        textAlign: "center",
+      })}
+    >
+      <img
+        src={profileIcon.src}
+        class={css({ display: "inline-block", borderRadius: "50%" })}
+        width="128px"
+        height="auto"
+      />
+    </div>
+
+    <p
+      class={css({
+        color: "profile",
+        mt: { base: "16px", md: "12px" },
+        fontSize: "20px",
+        fontWeight: "bold",
+        textAlign: "center",
+      })}
+    >
+      Haruna Nishita
+    </p>
   </div>
 </BaseLayout>
-
-<style>
-  .introduction {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    margin-top: 40px;
-    padding: 0 24px;
-  }
-
-  .introduction > h1 {
-    font-size: 40px;
-  }
-
-  .introduction > h2 {
-    font-size: 32px;
-  }
-
-  .text {
-    margin-top: 16px;
-    font-size: 18px;
-    letter-spacing: 0.1em;
-  }
-
-  .introduction > img {
-    margin-top: 32px;
-    border-radius: 50%;
-  }
-
-  .owner_name {
-    margin-top: 4px;
-    font-size: 20px;
-    font-weight: 600;
-  }
-</style>

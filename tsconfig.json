@@ -8,5 +8,5 @@
       "src/*": ["./dist/src/*", "./src/*"]
     }
   },
-  "include": ["src", "dist/**/*"]
+  "include": ["src", "dist/**/*", "styled-system"]
 }

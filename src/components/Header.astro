@@ -2,93 +2,74 @@
 import logoLight from "src/assets/common/logo-light.svg";
 import logoDark from "src/assets/common/logo-dark.svg";
 import ThemeIcon from "src/components/ThemeIcon.astro";
+import { css } from "styled-system/css";
 ---
 
 <header>
   <nav>
-    <div class="nav_contents">
+    <div
+      class={css({
+        display: "flex",
+        justifyContent: { base: "space-between", md: "space-around" },
+        alignItems: "center",
+      })}
+    >
       <a href="/">
-        <img class="logo_light" src={logoLight.src} alt="light mode logo" />
-        <img class="logo_dark" src={logoDark.src} alt="dark mode logo" />
+        <img
+          class={css({
+            display: { base: "inline-block", _dark: "none" },
+            width: { base: "40px", mdToXl: "64px", xl: "72px" },
+            height: {
+              base: "46px",
+              mdToXl: "74px",
+              xl: "83px",
+            },
+            mt: { base: "12px", mdToXl: "16px", xl: "12px" },
+            ml: { base: "24px", md: "0" },
+          })}
+          src={logoLight.src}
+          alt="light mode logo"
+        />
+        <img
+          class={css({
+            display: { base: "none", _dark: "inline-block" },
+            width: { base: "40px", mdToXl: "64px", xl: "72px" },
+            height: {
+              base: "46px",
+              mdToXl: "74px",
+              xl: "83px",
+            },
+            mt: { base: "12px", mdToXl: "16px", xl: "12px" },
+            ml: { base: "24px", md: "0" },
+          })}
+          src={logoDark.src}
+          alt="dark mode logo"
+        />
       </a>
-      <div class="nav_links">
-        <a href="/about" class="link">ABOUT</a>
-        <a href="/works" class="link" data-astro-reload>WORKS</a>
+      <div
+        class={css({
+          display: "flex",
+          gap: "16px",
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: { lg: "sm", md: "xs" },
+          fontWeight: "bold",
+        })}
+      >
+        <a
+          href="/about"
+          class={css({
+            color: "link",
+            fontSize: { base: "xs", md: "sm" },
+          })}>ABOUT</a
+        >
+        <a
+          href="/works"
+          class={css({ color: "link", fontSize: { base: "xs", md: "sm" } })}
+          data-astro-reload>WORKS</a
+        >
         <ThemeIcon />
       </div>
     </div>
   </nav>
 </header>
-
-<style>
-  .nav_contents {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-
-  .nav_links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    font-weight: bold;
-  }
-
-  .link {
-    color: #3c3c3c;
-    padding: 4px 8px;
-  }
-
-  :global(.dark) .link {
-    color: #cccccc;
-  }
-
-  .logo_light {
-    margin-top: 12px;
-    width: 72px;
-    height: 83px;
-  }
-
-  .logo_dark {
-    margin-top: 12px;
-    width: 72px;
-    height: 83px;
-    display: none;
-  }
-
-  :global(.dark) .logo_light {
-    display: none;
-  }
-  :global(.dark) .logo_dark {
-    display: inline;
-  }
-
-  @media (min-width: 960px) and (max-width: 1280px) {
-    .logo_light {
-      margin-top: 16px;
-      width: 64px;
-      height: 74px;
-    }
-
-    .logo_dark {
-      margin-top: 16px;
-      width: 64px;
-      height: 74px;
-    }
-  }
-
-  @media (max-width: 960px) {
-    .logo_light {
-      margin-top: 18px;
-      width: 40px;
-      height: 46px;
-    }
-
-    .logo_dark {
-      margin-top: 18px;
-      width: 40px;
-      height: 46px;
-    }
-  }
-</style>

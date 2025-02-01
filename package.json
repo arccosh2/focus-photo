@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "prepare": "panda codegen",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
@@ -20,9 +21,11 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sharp": "^0.33.4",
+    "swiper": "^11.2.1",
     "typescript": "^5.5.3"
   },
   "devDependencies": {
+    "@pandacss/dev": "^0.51.1",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.0"
   }
