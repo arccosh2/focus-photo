@@ -15,8 +15,8 @@ const pageTitle = "Index Page";
       height: {
         base: "100svh",
         lg: "600px",
-        "2xl": "700px",
-        "3xl": "910px",
+        "2xl": "640px",
+        "3xl": "720px",
       },
       alignItems: "center",
       justifyContent: "center",
@@ -33,14 +33,12 @@ const pageTitle = "Index Page";
     <div
       class={css({
         display: "grid",
-        width: { base: "1000px", "3xl": "1300px" },
-        height: {
-          base: "670px",
-          "3xl": "880px",
-        },
+        width: { base: "1100px", "3xl": "1300px" },
         mt: "32px",
         hideBelow: "xl",
         gridAutoFlow: "dense",
+        gridTemplateRows: "260px 180px 160px auto",
+        gridTemplateColumns: "repeat(3, 1fr)",
         gap: "1rem",
       })}
     >
