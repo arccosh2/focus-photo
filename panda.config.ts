@@ -19,6 +19,12 @@ export default defineConfig({
       breakpoints: {
         "3xl": "1800px",
       },
+      keyframes: {
+        fadein: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+      },
       tokens: {
         colors: {
           neutral700: { value: "#404040" },
@@ -27,7 +33,7 @@ export default defineConfig({
           neutral200: { value: "#e5e5e5" },
           neutral100: { value: "#f5f5f5" },
           red900: { value: "#7f1d1d" },
-          indigo950: { value: "#1e1b4b" },
+          red950: { value: "#450a0a" },
         },
         fontSizes: {
           xxl: { value: "40px" },
@@ -69,7 +75,7 @@ export default defineConfig({
           underBar: {
             value: {
               base: "{colors.red900}",
-              _dark: "{colors.indigo950}",
+              _dark: "{colors.red950}",
             },
           },
         },

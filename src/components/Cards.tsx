@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useAnimate } from "framer-motion";
-import styles from "src/styles/card.module.css";
 import type { Visual } from "src/library/microcms";
 import { Modal } from "./Modal";
 
 import openInFullIcon from "src/assets/common/ic_open-in-full.svg";
+import { css } from "styled-system/css";
 
 interface Props {
   visuals: Visual[];
@@ -44,28 +44,88 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
 
   return (
     <>
-      <div className={styles.wrapper}>
+      <div
+        className={css({
+          display: "flex",
+          position: "relative",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          animation: "fadein 0.3s",
+        })}
+      >
         <img
-          src={activeVisual.photo.url + "?fit=crop&w=960&h=540"}
-          className={styles.main_image}
+          src={activeVisual.photo.url + "?fit=crop&w=928&h=522"}
+          className={css({
+            width: "928px",
+            height: "522px",
+            borderRadius: "8px",
+          })}
         />
         {!isModalOpen && (
           <button
-            className={styles.open_modal_button}
+            className={css({
+              position: "absolute",
+              top: "16px",
+              right: "16px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "40px",
+              height: "40px",
+              backgroundColor: "#000",
+              opacity: 0.8,
+              borderRadius: "50%",
+            })}
             onClick={handleModalOpen}
           >
-            <img src={openInFullIcon.src} className={styles.open_modal_icon} />
+            <img
+              src={openInFullIcon.src}
+              className={css({
+                width: "24px",
+                height: "24px",
+              })}
+            />
           </button>
         )}
 
-        <div className={styles.thumbnails}>
+        <div
+          className={css({
+            position: "relative",
+            justifyContent: "flex-start",
+            alignItems: "flex-start",
+            gap: "10px",
+            display: "flex",
+            width: "928px",
+            height: "102px",
+            mt: "16px",
+            overflow: "scroll",
+            overflowY: "hidden",
+            scrollbarWidth: "none",
+            _scrollbar: {
+              display: "none",
+            },
+          })}
+        >
           {visuals.map((visual, index) => (
             <button onClick={() => handleThumbnailClick(index)} key={visual.id}>
               <div
                 className={
                   activeIndex === index
-                    ? styles.thumbnail
-                    : styles.in_active_thumbnail
+                    ? css({
+                        position: "relative",
+                        width: "160px",
+                        height: "90px",
+                        borderRadius: "8px",
+                        overflow: "hidden",
+                      })
+                    : css({
+                        width: "160px",
+                        height: "90px",
+                        borderRadius: "8px",
+                        overflow: "hidden",
+                        opacity: 0.4,
+                      })
                 }
               >
                 <img
@@ -76,16 +136,37 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
               </div>
             </button>
           ))}
-          <span className={styles.under_bar} ref={underBar} />
+          <span
+            className={css({
+              position: "absolute",
+              width: "160px",
+              height: "5px",
+              top: "96px",
+              backgroundColor: "underBar",
+              borderRadius: "4px",
+            })}
+            ref={underBar}
+          />
         </div>
       </div>
 
       <Modal isOpen={isModalOpen} handleModalClose={handleModalClose}>
-        <h2 className={styles.title}>{activeVisual.title}</h2>
-        <p className={styles.caption}>{activeVisual.caption}</p>
+        <h2 className={css({ fontSize: "md", fontWeight: "600" })}>
+          {activeVisual.title}
+        </h2>
+        <p className={css({ mt: "4px", fontSize: "sm" })}>
+          {activeVisual.caption}
+        </p>
         <small>taken in {activeVisual.year}</small>
         {activeVisual.tags.map((tag, index) => (
-          <small key={tag + `_${index}`} className={styles.tag}>
+          <small
+            key={tag + `_${index}`}
+            className={css({
+              display: "block",
+              fontSize: "xs",
+              color: "#7b7878",
+            })}
+          >
             #{tag}
           </small>
         ))}
