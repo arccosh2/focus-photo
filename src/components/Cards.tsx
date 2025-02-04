@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { useAnimate } from "framer-motion";
 import type { Visual } from "src/library/microcms";
+import { css } from "styled-system/css";
 import { Modal } from "./Modal";
 
-import openInFullIcon from "src/assets/common/ic_open-in-full.svg";
-import { css } from "styled-system/css";
+import closeIcon from "src/assets/common/ic_close.svg";
 
 interface Props {
   visuals: Visual[];
@@ -13,32 +12,17 @@ interface Props {
 export const Cards: React.FC<Props> = ({ visuals }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [underBar, animate] = useAnimate();
 
-  const transformUnderBar = (index: number) => {
-    if (!underBar.current || index === activeIndex) return;
+  const handleClick = (index: number) => {
+    if (isModalOpen) {
+      setIsModalOpen(false);
 
-    // TODO: 解像度に応じて移動量を調整する
-    const moveX = index * 170;
+      return;
+    }
 
-    const moveAnimation = (moveX: number) => {
-      animate(
-        underBar.current,
-        { x: moveX },
-        { ease: "backOut", duration: 0.4 },
-      );
-    };
-
-    moveAnimation(moveX);
-  };
-
-  const handleThumbnailClick = (index: number) => {
-    transformUnderBar(index);
+    setIsModalOpen(true);
     setActiveIndex(index);
   };
-
-  const handleModalOpen = () => setIsModalOpen(true);
-  const handleModalClose = () => setIsModalOpen(false);
 
   const activeVisual = visuals[activeIndex];
 
@@ -46,130 +30,145 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
     <>
       <div
         className={css({
-          display: "flex",
-          position: "relative",
+          display: "grid",
           justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          animation: "fadein 0.3s",
+          gridTemplateColumns: "repeat(3, 120px)",
+          gap: "8px",
+          mt: "40px",
         })}
       >
-        <img
-          src={activeVisual.photo.url + "?fit=crop&w=928&h=522"}
-          className={css({
-            width: "928px",
-            height: "522px",
-            borderRadius: "8px",
-          })}
-        />
-        {!isModalOpen && (
-          <button
+        {visuals.map((visual, index) => (
+          <div
             className={css({
-              position: "absolute",
-              top: "16px",
-              right: "16px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "40px",
-              height: "40px",
-              backgroundColor: "#000",
-              opacity: 0.8,
-              borderRadius: "50%",
+              height: "154px",
+              color: "text",
+              backgroundColor: "card",
+              borderRadius: "8px",
+              overflow: "hidden",
+              boxShadow: {
+                base: "6px 6px 7px -9px #777575",
+                _dark: "6px 6px 7px -9px #000",
+              },
             })}
-            onClick={handleModalOpen}
           >
-            <img
-              src={openInFullIcon.src}
-              className={css({
-                width: "24px",
-                height: "24px",
-              })}
-            />
-          </button>
-        )}
-
-        <div
-          className={css({
-            position: "relative",
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            gap: "10px",
-            display: "flex",
-            width: "928px",
-            height: "102px",
-            mt: "16px",
-            overflow: "scroll",
-            overflowY: "hidden",
-            scrollbarWidth: "none",
-            _scrollbar: {
-              display: "none",
-            },
-          })}
-        >
-          {visuals.map((visual, index) => (
-            <button onClick={() => handleThumbnailClick(index)} key={visual.id}>
-              <div
-                className={
-                  activeIndex === index
-                    ? css({
-                        position: "relative",
-                        width: "160px",
-                        height: "90px",
-                        borderRadius: "8px",
-                        overflow: "hidden",
-                      })
-                    : css({
-                        width: "160px",
-                        height: "90px",
-                        borderRadius: "8px",
-                        overflow: "hidden",
-                        opacity: 0.4,
-                      })
-                }
-              >
+            <div className={css({ display: "flex", flexDirection: "column" })}>
+              <button onClick={() => handleClick(index)}>
                 <img
-                  src={visual.photo.url + "?fit=crop&w=160&h=90"}
-                  width="100%"
-                  height="100%"
+                  src={visual.photo.url + "?fit=clip&w=120?q=75"}
+                  alt="photo"
+                  width="120px"
                 />
+              </button>
+              <div className={css({ padding: "8px" })}>
+                <h1
+                  className={css({
+                    fontSize: "xs",
+                    fontFamily: "Verdana",
+                  })}
+                >
+                  {visual.title}
+                </h1>
+                <p className={css({ fontSize: "xxs", mt: "2px" })}>
+                  taken in {visual.year}
+                </p>
               </div>
-            </button>
-          ))}
-          <span
-            className={css({
-              position: "absolute",
-              width: "160px",
-              height: "5px",
-              top: "96px",
-              backgroundColor: "underBar",
-              borderRadius: "4px",
-            })}
-            ref={underBar}
-          />
-        </div>
+            </div>
+          </div>
+        ))}
       </div>
 
-      <Modal isOpen={isModalOpen} handleModalClose={handleModalClose}>
-        <h2 className={css({ fontSize: "md", fontWeight: "600" })}>
-          {activeVisual.title}
-        </h2>
-        <p className={css({ mt: "4px", fontSize: "sm" })}>
-          {activeVisual.caption}
-        </p>
-        <small>taken in {activeVisual.year}</small>
-        {activeVisual.tags.map((tag, index) => (
-          <small
-            key={tag + `_${index}`}
+      <Modal
+        isOpen={isModalOpen}
+        handleModalClose={() => setIsModalOpen(false)}
+      >
+        <div
+          className={css({
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "100svh",
+          })}
+        >
+          <div
             className={css({
-              display: "block",
-              fontSize: "xs",
-              color: "#7b7878",
+              position: "relative",
+              width: "320px",
+              minHeight: "400px",
+              color: "#222222",
+              backgroundColor: "#e6e6e6",
+              borderRadius: "16px",
+              padding: "1.2%",
+              overflow: "scroll",
+              zIndex: "contents",
             })}
           >
-            #{tag}
-          </small>
-        ))}
+            <button
+              className={css({
+                position: "absolute",
+                top: "14px",
+                right: "14px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "24px",
+                height: "24px",
+                backgroundColor: "#c5c5c5",
+                borderRadius: "50%",
+              })}
+              onClick={() => setIsModalOpen(false)}
+            >
+              <img
+                src={closeIcon.src}
+                className={css({
+                  width: "12px",
+                  height: "12px",
+                })}
+              />
+            </button>
+            <img
+              src={activeVisual.photo.url + "?fit=clip&w=320?q=75"}
+              className={css({
+                width: "320px",
+                borderRadius: "12px",
+              })}
+            />
+            <div
+              className={css({
+                padding: "12px",
+              })}
+            >
+              <h1
+                className={css({
+                  fontSize: "sm",
+                  fontWeight: "600",
+                  fontFamily: "Verdana",
+                  borderBottom: "1px solid #535252",
+                })}
+              >
+                {activeVisual.title}
+              </h1>
+              <p className={css({ mt: "12px", fontSize: "xs" })}>
+                {activeVisual.caption}
+              </p>
+              <small className={css({ mt: "24px", fontSize: "xxs" })}>
+                taken in {activeVisual.year}
+              </small>
+              {activeVisual.tags.map((tag, index) => (
+                <small
+                  key={tag + `_${index}`}
+                  className={css({
+                    display: "block",
+                    fontSize: "xxs",
+                    color: "#7b7878",
+                  })}
+                >
+                  #{tag}
+                </small>
+              ))}
+            </div>
+          </div>
+        </div>
       </Modal>
     </>
   );

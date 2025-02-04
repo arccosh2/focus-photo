@@ -27,11 +27,13 @@ export default defineConfig({
       },
       tokens: {
         colors: {
+          neutral800: { value: "#262626" },
           neutral700: { value: "#404040" },
           neutral600: { value: "#525252" },
           neutral300: { value: "#f5f5f5" },
           neutral200: { value: "#e5e5e5" },
           neutral100: { value: "#f5f5f5" },
+          gray900: { value: "#111827" },
           red900: { value: "#7f1d1d" },
           red950: { value: "#450a0a" },
         },
@@ -42,6 +44,7 @@ export default defineConfig({
           md: { value: "20px" },
           sm: { value: "16px" },
           xs: { value: "12px" },
+          xxs: { value: "8px" },
         },
         radii: {
           md: { value: "8px" },
@@ -58,6 +61,18 @@ export default defineConfig({
             value: {
               base: "{colors.neutral600}",
               _dark: "{colors.neutral100}",
+            },
+          },
+          card: {
+            value: {
+              base: "{colors.neutral100}",
+              _dark: "{colors.gray900}",
+            },
+          },
+          text: {
+            value: {
+              base: "{colors.neutral800}",
+              _dark: "{colors.neutral200}",
             },
           },
           profile: {
