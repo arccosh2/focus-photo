@@ -6,6 +6,8 @@ import { Modal } from "./Modal";
 import closeIcon from "src/assets/common/ic_close.svg";
 import openInFullIcon from "src/assets/common/ic_open-in-full.svg";
 import { css } from "styled-system/css";
+import { ModalButton } from "./ModalButton";
+import { ModalContent } from "./ModalContent";
 
 interface Props {
   visuals: Visual[];
@@ -64,30 +66,22 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
           })}
         />
         {!isModalOpen && (
-          <button
-            className={css({
-              position: "absolute",
-              top: "16px",
-              right: "16px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "40px",
-              height: "40px",
-              backgroundColor: "#000",
-              opacity: 0.8,
-              borderRadius: "50%",
-            })}
+          <ModalButton
+            position="absolute"
+            top="16px"
+            right="16px"
+            backgroundColor="#000"
+            opacity="0.8"
             onClick={handleModalOpen}
           >
             <img
               src={openInFullIcon.src}
               className={css({
-                width: "24px",
-                height: "24px",
+                width: "18px",
+                height: "18px",
               })}
             />
-          </button>
+          </ModalButton>
         )}
 
         <div
@@ -151,35 +145,23 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
         </div>
       </div>
 
-      <Modal isOpen={isModalOpen} handleModalClose={handleModalClose}>
-        <div
-          className={css({
-            position: "absolute",
-            top: "150px",
-            right: "340px",
-            width: "320px",
-            height: "160px",
-            color: "#222222",
-            backgroundColor: "#e6e6e6",
-            borderRadius: "16px",
-            padding: "1.2%",
-            overflow: "scroll",
-            zIndex: "contents",
-          })}
+      <Modal
+        isImageDecoded={true}
+        isOpen={isModalOpen}
+        handleModalClose={handleModalClose}
+      >
+        <ModalContent
+          position="absolute"
+          top="150px"
+          right="340px"
+          width="320px"
+          height="160px"
         >
-          <button
-            className={css({
-              position: "absolute",
-              top: "10px",
-              right: "10px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "32px",
-              height: "32px",
-              backgroundColor: "#c5c5c5",
-              borderRadius: "50%",
-            })}
+          <ModalButton
+            position="absolute"
+            top="10px"
+            right="10px"
+            backgroundColor="#c5c5c5"
             onClick={handleModalClose}
           >
             <img
@@ -189,7 +171,7 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
                 height: "18px",
               })}
             />
-          </button>
+          </ModalButton>
 
           <h2 className={css({ fontSize: "md", fontWeight: "600" })}>
             {activeVisual.title}
@@ -210,7 +192,7 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
               #{tag}
             </small>
           ))}
-        </div>
+        </ModalContent>
       </Modal>
     </>
   );

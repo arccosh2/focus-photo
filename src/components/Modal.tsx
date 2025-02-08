@@ -3,12 +3,14 @@ import { css } from "styled-system/css";
 interface Props {
   children: React.ReactNode;
   isOpen: boolean;
+  isImageDecoded: boolean;
   handleModalClose: () => void;
 }
 
 export const Modal: React.FC<Props> = ({
   children,
   isOpen,
+  isImageDecoded,
   handleModalClose,
 }) => {
   if (!isOpen) return null;
@@ -16,6 +18,7 @@ export const Modal: React.FC<Props> = ({
   return (
     <div
       className={css({
+        display: isImageDecoded ? "block" : "none",
         position: "fixed",
         top: "0",
         left: "0",
@@ -23,6 +26,7 @@ export const Modal: React.FC<Props> = ({
         bottom: "0",
         overflowY: "auto",
         zIndex: "modal",
+        animation: "fadein 0.15s",
       })}
     >
       <div

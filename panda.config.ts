@@ -17,6 +17,7 @@ export default defineConfig({
   theme: {
     extend: {
       breakpoints: {
+        xs: "428px",
         "3xl": "1800px",
       },
       keyframes: {
@@ -100,4 +101,6 @@ export default defineConfig({
 
   // The output directory for your css system
   outdir: "styled-system",
+
+  jsxFramework: "react",
 });
