@@ -1,7 +1,9 @@
 ---
+import { Slide } from "src/components/Slide";
 import { Cards } from "src/components/Cards";
 import BaseLayout from "src/layouts/BaseLayout.astro";
 import { getVisuals } from "src/library/microcms";
+import { css } from "styled-system/css";
 
 const pageTitle = "photos";
 const { year } = Astro.params;
@@ -18,9 +20,28 @@ const visuals = response.contents.map((visual) => visual);
 
   {
     visuals.length !== 0 && (
-      <div class="wrapper">
-        <Cards visuals={visuals} client:only="react" />
-      </div>
+      <>
+        {/* sp, tab用レイアウト */}
+        <div
+          class={css({
+            hideFrom: "xl",
+          })}
+        >
+          <Cards visuals={visuals} client:only="react" />
+        </div>
+
+        {/* PC用レイアウト */}
+        <div
+          class={css({
+            display: "flex",
+            justifyContent: "center",
+            mt: "8px",
+            hideBelow: "xl",
+          })}
+        >
+          <Slide visuals={visuals} client:only="react" />
+        </div>
+      </>
     )
   }
 </BaseLayout>

@@ -4,7 +4,8 @@
 
 html {
   height: 100svh;
-  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", sans-serif;
   color: "#404040";
   background-attachment: fixed !important;
   background: radial-gradient(
@@ -31,7 +32,6 @@ iframe {
 
 button {
   cursor: pointer;
-  background-color: transparent;
   border: none;
 }
 

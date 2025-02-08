@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { useAnimate } from "framer-motion";
-import styles from "src/styles/card.module.css";
+import React, { useRef, useState } from "react";
 import type { Visual } from "src/library/microcms";
+import { css } from "styled-system/css";
 import { Modal } from "./Modal";
 
-import openInFullIcon from "src/assets/common/ic_open-in-full.svg";
+import closeIcon from "src/assets/common/ic_close.svg";
+import { ModalButton } from "./ModalButton";
+import { ModalContent } from "./ModalContent";
 
 interface Props {
   visuals: Visual[];
@@ -13,82 +14,184 @@ interface Props {
 export const Cards: React.FC<Props> = ({ visuals }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [underBar, animate] = useAnimate();
+  const [isDecoded, setIsDecoded] = useState<boolean>(false);
 
-  const transformUnderBar = (index: number) => {
-    if (!underBar.current || index === activeIndex) return;
+  const modalImageRef = useRef<HTMLImageElement>(null);
 
-    // TODO: 解像度に応じて移動量を調整する
-    const moveX = index * 170;
+  const handleLoadImage = async (img: HTMLImageElement | null) => {
+    if (img == null) return;
 
-    const moveAnimation = (moveX: number) => {
-      animate(
-        underBar.current,
-        { x: moveX },
-        { ease: "backOut", duration: 0.4 },
-      );
-    };
-
-    moveAnimation(moveX);
+    try {
+      await img.decode();
+      setIsDecoded(true);
+    } catch (error) {
+      console.error(error);
+      setIsDecoded(true);
+    }
   };
 
-  const handleThumbnailClick = (index: number) => {
-    transformUnderBar(index);
+  const handleModalOpen = (index: number) => {
+    setIsModalOpen(true);
     setActiveIndex(index);
   };
 
-  const handleModalOpen = () => setIsModalOpen(true);
-  const handleModalClose = () => setIsModalOpen(false);
+  const handleModalClose = () => {
+    setIsDecoded(false);
+    setIsModalOpen(false);
+  };
 
   const activeVisual = visuals[activeIndex];
 
   return (
     <>
-      <div className={styles.wrapper}>
-        <img
-          src={activeVisual.photo.url + "?fit=crop&w=960&h=540"}
-          className={styles.main_image}
-        />
-        {!isModalOpen && (
-          <button
-            className={styles.open_modal_button}
-            onClick={handleModalOpen}
+      <div
+        className={css({
+          display: "grid",
+          justifyContent: "center",
+          gridTemplateColumns: {
+            base: "repeat(3, 110px)",
+            xs: "repeat(3, 120px)",
+            sm: "repeat(4, 120px)",
+            md: "repeat(4, 136px)",
+            lg: "repeat(5, 168px)",
+          },
+          gap: { base: "8px", lg: "16px" },
+          mt: "40px",
+        })}
+      >
+        {visuals.map((visual, index) => (
+          <div
+            className={css({
+              height: { base: "146px", xs: "154px", md: "160px", lg: "204px" },
+              color: "text",
+              backgroundColor: "card",
+              borderRadius: "8px",
+              overflow: "hidden",
+              boxShadow: {
+                base: "6px 6px 7px -9px #777575",
+                _dark: "6px 6px 7px -9px #000",
+              },
+            })}
           >
-            <img src={openInFullIcon.src} className={styles.open_modal_icon} />
-          </button>
-        )}
-
-        <div className={styles.thumbnails}>
-          {visuals.map((visual, index) => (
-            <button onClick={() => handleThumbnailClick(index)} key={visual.id}>
-              <div
-                className={
-                  activeIndex === index
-                    ? styles.thumbnail
-                    : styles.in_active_thumbnail
-                }
-              >
+            <div className={css({ display: "flex", flexDirection: "column" })}>
+              <button onClick={() => handleModalOpen(index)}>
                 <img
-                  src={visual.photo.url + "?fit=crop&w=160&h=90"}
-                  width="100%"
-                  height="100%"
+                  loading="lazy"
+                  src={visual.photo.url + "?fit=clip&w=140?q=75"}
+                  alt="photo"
+                  className={css({
+                    width: {
+                      base: "110px",
+                      xs: "120px",
+                      md: "136px",
+                      lg: "168px",
+                    },
+                  })}
                 />
+              </button>
+              <div className={css({ padding: "8px" })}>
+                <h1
+                  className={css({
+                    fontSize: { base: "xs", lg: "16px" },
+                    fontFamily: "Verdana",
+                  })}
+                >
+                  {visual.title}
+                </h1>
+                <p
+                  className={css({
+                    fontSize: { base: "xxs", lg: "xs" },
+                    mt: "2px",
+                  })}
+                >
+                  taken in {visual.year}
+                </p>
               </div>
-            </button>
-          ))}
-          <span className={styles.under_bar} ref={underBar} />
-        </div>
+            </div>
+          </div>
+        ))}
       </div>
 
-      <Modal isOpen={isModalOpen} handleModalClose={handleModalClose}>
-        <h2 className={styles.title}>{activeVisual.title}</h2>
-        <p className={styles.caption}>{activeVisual.caption}</p>
-        <small>taken in {activeVisual.year}</small>
-        {activeVisual.tags.map((tag, index) => (
-          <small key={tag + `_${index}`} className={styles.tag}>
-            #{tag}
-          </small>
-        ))}
+      <Modal
+        isImageDecoded={isDecoded}
+        isOpen={isModalOpen}
+        handleModalClose={handleModalClose}
+      >
+        <div
+          className={css({
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "100svh",
+          })}
+        >
+          <ModalContent position="relative" width="320px" minHeight="400px">
+            <ModalButton
+              variant="sm"
+              position="absolute"
+              top="14px"
+              right="14px"
+              width="24px"
+              height="24px"
+              backgroundColor="#c5c5c5"
+              onClick={handleModalClose}
+            >
+              <img
+                src={closeIcon.src}
+                alt="close modal"
+                className={css({
+                  width: "12px",
+                  height: "12px",
+                })}
+              />
+            </ModalButton>
+            <img
+              ref={modalImageRef}
+              src={activeVisual.photo.url + "?fit=clip&w=320?q=75"}
+              alt="modal image"
+              className={css({
+                width: "320px",
+                borderRadius: "12px",
+              })}
+              onLoad={() => handleLoadImage(modalImageRef.current)}
+            />
+            <div
+              className={css({
+                padding: "12px",
+              })}
+            >
+              <h1
+                className={css({
+                  fontSize: { base: "sm", md: "lg" },
+                  fontWeight: "600",
+                  fontFamily: "Verdana",
+                  borderBottom: "1px solid #535252",
+                })}
+              >
+                {activeVisual.title}
+              </h1>
+              <p className={css({ mt: "12px", fontSize: "xs" })}>
+                {activeVisual.caption}
+              </p>
+              <small className={css({ mt: "24px", fontSize: "xxs" })}>
+                taken in {activeVisual.year}
+              </small>
+              {activeVisual.tags.map((tag, index) => (
+                <small
+                  key={tag + `_${index}`}
+                  className={css({
+                    display: "block",
+                    fontSize: "xxs",
+                    color: "#7b7878",
+                  })}
+                >
+                  #{tag}
+                </small>
+              ))}
+            </div>
+          </ModalContent>
+        </div>
       </Modal>
     </>
   );

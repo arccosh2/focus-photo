@@ -17,17 +17,26 @@ export default defineConfig({
   theme: {
     extend: {
       breakpoints: {
+        xs: "428px",
         "3xl": "1800px",
+      },
+      keyframes: {
+        fadein: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
       },
       tokens: {
         colors: {
+          neutral800: { value: "#262626" },
           neutral700: { value: "#404040" },
           neutral600: { value: "#525252" },
           neutral300: { value: "#f5f5f5" },
           neutral200: { value: "#e5e5e5" },
           neutral100: { value: "#f5f5f5" },
+          gray900: { value: "#111827" },
           red900: { value: "#7f1d1d" },
-          indigo950: { value: "#1e1b4b" },
+          red950: { value: "#450a0a" },
         },
         fontSizes: {
           xxl: { value: "40px" },
@@ -36,6 +45,7 @@ export default defineConfig({
           md: { value: "20px" },
           sm: { value: "16px" },
           xs: { value: "12px" },
+          xxs: { value: "8px" },
         },
         radii: {
           md: { value: "8px" },
@@ -54,6 +64,18 @@ export default defineConfig({
               _dark: "{colors.neutral100}",
             },
           },
+          card: {
+            value: {
+              base: "{colors.neutral100}",
+              _dark: "{colors.gray900}",
+            },
+          },
+          text: {
+            value: {
+              base: "{colors.neutral800}",
+              _dark: "{colors.neutral200}",
+            },
+          },
           profile: {
             value: {
               base: "{colors.neutral700}",
@@ -69,7 +91,7 @@ export default defineConfig({
           underBar: {
             value: {
               base: "{colors.red900}",
-              _dark: "{colors.indigo950}",
+              _dark: "{colors.red950}",
             },
           },
         },
@@ -79,4 +101,6 @@ export default defineConfig({
 
   // The output directory for your css system
   outdir: "styled-system",
+
+  jsxFramework: "react",
 });
