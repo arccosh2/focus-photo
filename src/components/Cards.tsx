@@ -24,8 +24,8 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
     try {
       await img.decode();
       setIsDecoded(true);
-    } catch {
-      console.error();
+    } catch (error) {
+      console.error(error);
       setIsDecoded(true);
     }
   };
