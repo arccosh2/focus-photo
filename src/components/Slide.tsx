@@ -58,7 +58,7 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
         })}
       >
         <img
-          src={activeVisual.photo.url + "?fit=crop&w=928&h=522?q=75"}
+          src={activeVisual.photo.url + "?fit=crop&w=928&h=522?q=90"}
           className={css({
             width: "928px",
             height: "522px",
@@ -124,7 +124,7 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
                 }
               >
                 <img
-                  src={visual.photo.url + "?fit=crop&w=160&h=90?q=70"}
+                  src={visual.photo.url + "?fit=crop&w=160&h=90?q=80"}
                   width="100%"
                   height="100%"
                 />
