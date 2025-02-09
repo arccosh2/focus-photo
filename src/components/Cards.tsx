@@ -57,6 +57,7 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
           },
           gap: { base: "8px", lg: "16px" },
           mt: "40px",
+          mb: "56px",
         })}
       >
         {visuals.map((visual, index) => (
@@ -84,7 +85,7 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
             >
               <img
                 loading="lazy"
-                src={visual.photo.url + "?fit=clip&w=140?q=70"}
+                src={visual.photo.url + "?fit=clip&w=240"}
                 alt="photo"
                 className={css({
                   width: {
@@ -156,7 +157,7 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
               </ModalButton>
               <img
                 ref={modalImageRef}
-                src={activeVisual.photo.url + "?fit=clip&w=320?q=75"}
+                src={activeVisual.photo.url + "?fit=clip&w=480"}
                 alt="modal image"
                 className={css({
                   width: "320px",
