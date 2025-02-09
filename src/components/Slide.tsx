@@ -93,7 +93,7 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
             display: "flex",
             width: "928px",
             height: "102px",
-            mt: "16px",
+            mt: "12px",
             overflow: "scroll",
             overflowY: "hidden",
             scrollbarWidth: "none",
@@ -145,55 +145,53 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
         </div>
       </div>
 
-      <Modal
-        isImageDecoded={true}
-        isOpen={isModalOpen}
-        handleModalClose={handleModalClose}
-      >
-        <ModalContent
-          position="absolute"
-          top="150px"
-          right="340px"
-          width="320px"
-          height="160px"
-        >
-          <ModalButton
+      {isModalOpen && (
+        <Modal isImageDecoded={true} handleModalClose={handleModalClose}>
+          <ModalContent
             position="absolute"
-            top="10px"
-            right="10px"
-            backgroundColor="#c5c5c5"
-            onClick={handleModalClose}
+            top="150px"
+            right="340px"
+            width="320px"
+            height="160px"
           >
-            <img
-              src={closeIcon.src}
-              className={css({
-                width: "18px",
-                height: "18px",
-              })}
-            />
-          </ModalButton>
-
-          <h2 className={css({ fontSize: "md", fontWeight: "600" })}>
-            {activeVisual.title}
-          </h2>
-          <p className={css({ mt: "4px", fontSize: "sm" })}>
-            {activeVisual.caption}
-          </p>
-          <small>taken in {activeVisual.year}</small>
-          {activeVisual.tags.map((tag, index) => (
-            <small
-              key={tag + `_${index}`}
-              className={css({
-                display: "block",
-                fontSize: "xs",
-                color: "#7b7878",
-              })}
+            <ModalButton
+              position="absolute"
+              top="10px"
+              right="10px"
+              backgroundColor="#c5c5c5"
+              onClick={handleModalClose}
             >
-              #{tag}
-            </small>
-          ))}
-        </ModalContent>
-      </Modal>
+              <img
+                src={closeIcon.src}
+                className={css({
+                  width: "18px",
+                  height: "18px",
+                })}
+              />
+            </ModalButton>
+
+            <h2 className={css({ fontSize: "md", fontWeight: "600" })}>
+              {activeVisual.title}
+            </h2>
+            <p className={css({ mt: "4px", fontSize: "sm" })}>
+              {activeVisual.caption}
+            </p>
+            <small>taken in {activeVisual.year}</small>
+            {activeVisual.tags.map((tag, index) => (
+              <small
+                key={tag + `_${index}`}
+                className={css({
+                  display: "block",
+                  fontSize: "xs",
+                  color: "#7b7878",
+                })}
+              >
+                #{tag}
+              </small>
+            ))}
+          </ModalContent>
+        </Modal>
+      )}
     </>
   );
 };

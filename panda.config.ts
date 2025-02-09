@@ -34,7 +34,7 @@ export default defineConfig({
           neutral300: { value: "#f5f5f5" },
           neutral200: { value: "#e5e5e5" },
           neutral100: { value: "#f5f5f5" },
-          gray900: { value: "#111827" },
+          navy: { value: "#131824" },
           red900: { value: "#7f1d1d" },
           red950: { value: "#450a0a" },
         },
@@ -67,7 +67,7 @@ export default defineConfig({
           card: {
             value: {
               base: "{colors.neutral100}",
-              _dark: "{colors.gray900}",
+              _dark: "{colors.navy}",
             },
           },
           text: {

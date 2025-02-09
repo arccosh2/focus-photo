@@ -60,7 +60,8 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
         })}
       >
         {visuals.map((visual, index) => (
-          <div
+          <button
+            key={visual.id}
             className={css({
               height: { base: "146px", xs: "154px", md: "160px", lg: "204px" },
               color: "text",
@@ -72,24 +73,35 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
                 _dark: "6px 6px 7px -9px #000",
               },
             })}
+            onClick={() => handleModalOpen(index)}
           >
-            <div className={css({ display: "flex", flexDirection: "column" })}>
-              <button onClick={() => handleModalOpen(index)}>
-                <img
-                  loading="lazy"
-                  src={visual.photo.url + "?fit=clip&w=140?q=75"}
-                  alt="photo"
-                  className={css({
-                    width: {
-                      base: "110px",
-                      xs: "120px",
-                      md: "136px",
-                      lg: "168px",
-                    },
-                  })}
-                />
-              </button>
-              <div className={css({ padding: "8px" })}>
+            <div
+              className={css({
+                display: "flex",
+                flexDirection: "column",
+                height: "100%",
+              })}
+            >
+              <img
+                loading="lazy"
+                src={visual.photo.url + "?fit=clip&w=140?q=70"}
+                alt="photo"
+                className={css({
+                  width: {
+                    base: "110px",
+                    xs: "120px",
+                    md: "136px",
+                    lg: "168px",
+                  },
+                  height: {
+                    base: "73px",
+                    xs: "80px",
+                    md: "91px",
+                    lg: "112px",
+                  },
+                })}
+              />
+              <div className={css({ textAlign: "left", padding: "8px" })}>
                 <h1
                   className={css({
                     fontSize: { base: "xs", lg: "16px" },
@@ -108,91 +120,88 @@ export const Cards: React.FC<Props> = ({ visuals }) => {
                 </p>
               </div>
             </div>
-          </div>
+          </button>
         ))}
       </div>
-
-      <Modal
-        isImageDecoded={isDecoded}
-        isOpen={isModalOpen}
-        handleModalClose={handleModalClose}
-      >
-        <div
-          className={css({
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            height: "100svh",
-          })}
-        >
-          <ModalContent position="relative" width="320px" minHeight="400px">
-            <ModalButton
-              variant="sm"
-              position="absolute"
-              top="14px"
-              right="14px"
-              width="24px"
-              height="24px"
-              backgroundColor="#c5c5c5"
-              onClick={handleModalClose}
-            >
+      {isModalOpen && (
+        <Modal isImageDecoded={isDecoded} handleModalClose={handleModalClose}>
+          <div
+            className={css({
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              height: "100svh",
+            })}
+          >
+            <ModalContent position="relative" width="320px" minHeight="400px">
+              <ModalButton
+                variant="sm"
+                position="absolute"
+                top="14px"
+                right="14px"
+                width="24px"
+                height="24px"
+                backgroundColor="#c5c5c5"
+                onClick={handleModalClose}
+              >
+                <img
+                  src={closeIcon.src}
+                  alt="close modal"
+                  className={css({
+                    width: "12px",
+                    height: "12px",
+                  })}
+                />
+              </ModalButton>
               <img
-                src={closeIcon.src}
-                alt="close modal"
+                ref={modalImageRef}
+                src={activeVisual.photo.url + "?fit=clip&w=320?q=75"}
+                alt="modal image"
                 className={css({
-                  width: "12px",
-                  height: "12px",
+                  width: "320px",
+                  borderRadius: "12px",
                 })}
+                onLoad={() => handleLoadImage(modalImageRef.current)}
               />
-            </ModalButton>
-            <img
-              ref={modalImageRef}
-              src={activeVisual.photo.url + "?fit=clip&w=320?q=75"}
-              alt="modal image"
-              className={css({
-                width: "320px",
-                borderRadius: "12px",
-              })}
-              onLoad={() => handleLoadImage(modalImageRef.current)}
-            />
-            <div
-              className={css({
-                padding: "12px",
-              })}
-            >
-              <h1
+              <div
                 className={css({
-                  fontSize: { base: "sm", md: "lg" },
-                  fontWeight: "600",
-                  fontFamily: "Verdana",
-                  borderBottom: "1px solid #535252",
+                  padding: "12px",
                 })}
               >
-                {activeVisual.title}
-              </h1>
-              <p className={css({ mt: "12px", fontSize: "xs" })}>
-                {activeVisual.caption}
-              </p>
-              <small className={css({ mt: "24px", fontSize: "xxs" })}>
-                taken in {activeVisual.year}
-              </small>
-              {activeVisual.tags.map((tag, index) => (
-                <small
-                  key={tag + `_${index}`}
+                <h1
                   className={css({
-                    display: "block",
-                    fontSize: "xxs",
-                    color: "#7b7878",
+                    fontSize: { base: "sm", md: "lg" },
+                    fontWeight: "600",
+                    fontFamily: "Verdana",
+                    borderBottom: "1px solid #535252",
                   })}
                 >
-                  #{tag}
+                  {activeVisual.title}
+                </h1>
+                <p className={css({ mt: "12px", fontSize: "xs" })}>
+                  {activeVisual.caption}
+                </p>
+                <small className={css({ mt: "24px", fontSize: "xxs" })}>
+                  taken in {activeVisual.year}
                 </small>
-              ))}
-            </div>
-          </ModalContent>
-        </div>
-      </Modal>
+                {activeVisual.tags.map((tag, index) => (
+                  <small
+                    key={tag + `_${index}`}
+                    className={css({
+                      display: "block",
+                      fontSize: "xxs",
+                      color: "#7b7878",
+                    })}
+                  >
+                    #{tag}
+                  </small>
+                ))}
+              </div>
+            </ModalContent>
+          </div>
+        </Modal>
+      )}
     </>
   );
 };

@@ -1,19 +1,24 @@
+import { useEffect } from "react";
 import { css } from "styled-system/css";
 
 interface Props {
   children: React.ReactNode;
-  isOpen: boolean;
   isImageDecoded: boolean;
   handleModalClose: () => void;
 }
 
 export const Modal: React.FC<Props> = ({
   children,
-  isOpen,
   isImageDecoded,
   handleModalClose,
 }) => {
-  if (!isOpen) return null;
+  useEffect(() => {
+    document.body.style.overflowY = "hidden";
+
+    return () => {
+      document.body.style.overflowY = "auto";
+    };
+  });
 
   return (
     <div
@@ -31,7 +36,7 @@ export const Modal: React.FC<Props> = ({
     >
       <div
         className={css({
-          position: "absolute",
+          position: "fixed",
           width: "100%",
           height: "100vh",
           backgroundColor: "#000",
