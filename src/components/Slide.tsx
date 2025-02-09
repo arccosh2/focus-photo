@@ -124,6 +124,7 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
                 }
               >
                 <img
+                  loading="lazy"
                   src={visual.photo.url + "?fit=crop&w=160&h=90"}
                   width="100%"
                   height="100%"

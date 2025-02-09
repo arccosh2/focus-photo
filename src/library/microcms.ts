@@ -42,5 +42,8 @@ const client = createClient({
 });
 
 export const getVisuals = async () => {
-  return await client.get<VisualsResponse>({ endpoint: "visuals" });
+  return await client.get<VisualsResponse>({
+    endpoint: "visuals",
+    queries: { limit: 100 },
+  });
 };
