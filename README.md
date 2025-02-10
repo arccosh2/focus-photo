@@ -1,54 +1,61 @@
-# Astro Starter Kit: Basics
+# Focus Photo
 
-```sh
-npm create astro@latest -- --template basics
+## 概要
+
+写真用のポートフォリオサイト
+
+### 👉 使用技術
+
+- Astro v4.11.5
+- React v18.3.1
+- TypeScript v5.5.3
+- Panda CSS v0.51.1
+- microcms-js-sdk v3.1.2
+- Vercel（hosting）
+
+#### 技術選定理由
+
+- Astro
+  - パフォーマンスの観点から、インタラクティブな箇所と静的な箇所それぞれで使用する技術を分けたかったため。また、ViewTransitionを用いたページ遷移のアニメーションを簡単に実装できることからAstroを採用
+- Panda CSS
+  - 開発効率を上げるためにライブラリを使用したかった。ゼロランタイムCSSに興味もあり、Panda CSSを採用。
+
+### 🚀 ディレクトリ構成
+
 ```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
 /
 ├── public/
 │   └── favicon.svg
 ├── src/
+│   ├──assets
+│   │   └── 2020...
 │   ├── components/
-│   │   └── Card.astro
+│   │   └── Cards.astro...
 │   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
+│   │   └── BaseLayout.astro...
+│   ├── library/
+│   │   └── microcms.ts
+│   ├── pages/
+│   │   └── index.astro...
+│   ├── styles/
+│   │   └── global.css
+│   └── utils/
+│       └── constants.ts
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### 🧞 こだわったこと・難しかったこと・これからの展望
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+#### こだわったこと
 
-Any static assets, like images, can be placed in the `public/` directory.
+SP用の表示とPC用の表示で、レイアウトを大幅に変えた。</br>
+PC上ではなるべく写真を大きく見せたかったことから、スライド形式のレイアウトにした。一方でスマホでは、一覧性を担保するためにグリッド上のレイアウトにした。
 
-## 🧞 Commands
+#### 難しかったこと
 
-All commands are run from the root of the project, from a terminal:
+レスポンシブ対応が難しかった。</br>
+ある程度の画面幅には対応できていると思うが、改善の余地はあると思う。
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+#### これからの展望
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+コンポーネントを共通化したり、コンテンツが増えたらページングも実装したい。タグごとに検索できるような機能も追加したい。
