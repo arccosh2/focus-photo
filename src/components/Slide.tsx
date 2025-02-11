@@ -149,9 +149,8 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
       {isModalOpen && (
         <Modal isImageDecoded={true} handleModalClose={handleModalClose}>
           <ModalContent
-            position="absolute"
-            top="150px"
-            right="340px"
+            position="relative"
+            margin="116px 0 0 56%"
             width="320px"
             height="160px"
           >
