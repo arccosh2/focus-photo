@@ -1,0 +1,73 @@
+---
+import logoLight from "src/assets/common/logo-light.svg";
+import logoDark from "src/assets/common/logo-dark.svg";
+import { css } from "styled-system/css";
+import ThemeIcon from "./ThemeIcon.astro";
+---
+
+<header>
+  <nav>
+    <div
+      class={css({
+        display: "flex",
+        justifyContent: { base: "space-between", md: "space-around" },
+        alignItems: "center",
+      })}
+    >
+      <a href="/">
+        <img
+          class={css({
+            display: { base: "inline-block", _dark: "none" },
+            width: { base: "40px", md: "64px" },
+            height: {
+              base: "46px",
+              md: "74px",
+            },
+            mt: { base: "12px", mdToXl: "16px", xl: "12px" },
+            ml: { base: "24px", md: "0" },
+          })}
+          src={logoLight.src}
+          alt="light mode logo"
+        />
+        <img
+          class={css({
+            display: { base: "none", _dark: "inline-block" },
+            width: { base: "40px", md: "64px" },
+            height: {
+              base: "46px",
+              md: "74px",
+            },
+            mt: { base: "12px", mdToXl: "16px", xl: "12px" },
+            ml: { base: "24px", md: "0" },
+          })}
+          src={logoDark.src}
+          alt="dark mode logo"
+        />
+      </a>
+      <div
+        class={css({
+          display: "flex",
+          gap: "16px",
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: { lg: "sm", md: "xs" },
+          fontWeight: "bold",
+        })}
+      >
+        <a
+          href="/about"
+          class={css({
+            color: "link",
+            fontSize: { base: "xs", md: "sm" },
+          })}>ABOUT</a
+        >
+        <a
+          href="/works"
+          class={css({ color: "link", fontSize: { base: "xs", md: "sm" } })}
+          data-astro-reload>WORKS</a
+        >
+        <ThemeIcon />
+      </div>
+    </div>
+  </nav>
+</header>

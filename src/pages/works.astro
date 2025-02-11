@@ -1,0 +1,55 @@
+---
+import { Slide } from "src/components/Slide";
+import { Cards } from "src/components/Cards";
+import BaseLayout from "src/layouts/BaseLayout.astro";
+import { getVisuals } from "src/library/microcms";
+import { css } from "styled-system/css";
+
+const pageTitle = "photos";
+const { year } = Astro.params;
+
+const response = await getVisuals();
+
+const visuals = response.contents.map((visual) => visual);
+---
+
+<BaseLayout pageTitle={`${pageTitle} in ${year}`}>
+  {visuals.length === 0 && <p>No Contents</p>}
+
+  <!-- TODO: 画像のフェッチが終わってない間、スケルトンスクリーンを表示する -->
+
+  {
+    visuals.length !== 0 && (
+      <>
+        {/* sp, tab用レイアウト */}
+        <div
+          class={css({
+            hideFrom: "xl",
+          })}
+        >
+          <Cards visuals={visuals} client:only="react" />
+        </div>
+
+        {/* PC用レイアウト */}
+        <div
+          class={css({
+            display: "flex",
+            justifyContent: "center",
+            mt: "8px",
+            hideBelow: "xl",
+          })}
+        >
+          <Slide visuals={visuals} client:only="react" />
+        </div>
+      </>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+  }
+</style>
