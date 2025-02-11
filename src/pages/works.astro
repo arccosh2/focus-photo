@@ -5,15 +5,14 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 import { getVisuals } from "src/library/microcms";
 import { css } from "styled-system/css";
 
-const pageTitle = "photos";
-const { year } = Astro.params;
+const pageTitle = "Works Page";
 
 const response = await getVisuals();
 
 const visuals = response.contents.map((visual) => visual);
 ---
 
-<BaseLayout pageTitle={`${pageTitle} in ${year}`}>
+<BaseLayout pageTitle={`${pageTitle}`}>
   {visuals.length === 0 && <p>No Contents</p>}
 
   <!-- TODO: 画像のフェッチが終わってない間、スケルトンスクリーンを表示する -->
