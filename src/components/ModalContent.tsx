@@ -6,7 +6,6 @@ export const ModalContent = styled("div", {
     backgroundColor: "card",
     borderRadius: "16px",
     padding: "1.2%",
-    overflow: "scroll",
     zIndex: "contents",
   },
 });

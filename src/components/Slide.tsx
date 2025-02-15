@@ -152,7 +152,7 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
             position="relative"
             margin="116px 0 0 56%"
             width="320px"
-            height="160px"
+            minHeight="160px"
           >
             <ModalButton
               position="absolute"

@@ -36,7 +36,7 @@ export default defineConfig({
           neutral100: { value: "#f5f5f5" },
           navy: { value: "#222940" },
           red900: { value: "#7f1d1d" },
-          red1000: { value: "#611515" },
+          green: { value: "#5d6637" },
         },
         fontSizes: {
           xxl: { value: "40px" },
@@ -91,7 +91,7 @@ export default defineConfig({
           underBar: {
             value: {
               base: "{colors.red900}",
-              _dark: "{colors.red1000}",
+              _dark: "{colors.green}",
             },
           },
         },
