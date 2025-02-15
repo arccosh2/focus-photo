@@ -50,7 +50,7 @@ import ThemeIcon from "./ThemeIcon.astro";
           gap: "16px",
           justifyContent: "center",
           alignItems: "center",
-          fontSize: { lg: "sm", md: "xs" },
+          fontSize: { base: "xs", md: "sm", "3xl": "md" },
           fontWeight: "bold",
         })}
       >
@@ -58,13 +58,10 @@ import ThemeIcon from "./ThemeIcon.astro";
           href="/about"
           class={css({
             color: "link",
-            fontSize: { base: "xs", md: "sm" },
           })}>ABOUT</a
         >
-        <a
-          href="/works"
-          class={css({ color: "link", fontSize: { base: "xs", md: "sm" } })}
-          data-astro-reload>WORKS</a
+        <a href="/works" class={css({ color: "link" })} data-astro-reload
+          >WORKS</a
         >
         <ThemeIcon />
       </div>
