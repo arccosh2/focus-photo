@@ -77,13 +77,13 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
         <picture>
           <source
             media="(min-width: 1800px)"
-            srcSet={activeVisual.photo.url + "?fit=crop&w=992&h=558&dpr=2"}
+            srcSet={activeVisual.photo.url + "?fit=crop&w=1152&h=648&dpr=2"}
           />
           <img
-            src={activeVisual.photo.url + "?fit=crop&w=928&h=522"}
+            src={activeVisual.photo.url + "?fit=crop&w=928&h=522&dpr=2"}
             className={css({
-              width: { base: "928px", "3xl": "992px" },
-              height: { base: "522px", "3xl": "558px" },
+              width: { base: "928px", "3xl": "1152px" },
+              height: { base: "522px", "3xl": "648px" },
               borderRadius: "8px",
             })}
           />
@@ -110,7 +110,7 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
             alignItems: "flex-start",
             gap: { base: "10px", "3xl": "16px" },
             display: "flex",
-            width: { base: "928px", "3xl": "992px" },
+            width: { base: "928px", "3xl": "1152px" },
             height: { base: "102px", "3xl": "119px" },
             mt: "12px",
             overflow: "scroll",
@@ -145,7 +145,7 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
                   />
                   <img
                     loading="lazy"
-                    src={visual.photo.url + "?fit=crop&w=160&h=90"}
+                    src={visual.photo.url + "?fit=crop&w=160&h=90&dpr=2"}
                     className={css({
                       width: "100%",
                       height: "100%",
@@ -175,7 +175,9 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
             position="relative"
             width="320px"
             minHeight="160px"
-            margin="128px 0 0 56%"
+            className={css({
+              margin: { base: "128px 0 0 56%", "3xl": "128px 0 0 60%" },
+            })}
           >
             <ModalButton
               position="absolute"
