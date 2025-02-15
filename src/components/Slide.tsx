@@ -77,13 +77,13 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
         <picture>
           <source
             media="(min-width: 1800px)"
-            srcSet={activeVisual.photo.url + "?fit=crop&w=960&h=540"}
+            srcSet={activeVisual.photo.url + "?fit=crop&w=992&h=558&dpr=2"}
           />
           <img
             src={activeVisual.photo.url + "?fit=crop&w=928&h=522"}
             className={css({
-              width: { base: "928px", "3xl": "960px" },
-              height: { base: "522px", "3xl": "540px" },
+              width: { base: "928px", "3xl": "992px" },
+              height: { base: "522px", "3xl": "558px" },
               borderRadius: "8px",
             })}
           />
@@ -110,7 +110,7 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
             alignItems: "flex-start",
             gap: { base: "10px", "3xl": "16px" },
             display: "flex",
-            width: { base: "928px", "3xl": "960px" },
+            width: { base: "928px", "3xl": "992px" },
             height: { base: "102px", "3xl": "119px" },
             mt: "12px",
             overflow: "scroll",
