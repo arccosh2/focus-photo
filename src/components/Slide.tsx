@@ -180,12 +180,19 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
       {isModalOpen && (
         <Modal isImageDecoded={true} handleModalClose={handleModalClose}>
           <ModalContent
+            className={css({
+              width: { base: "320px", "3xl": "400px" },
+              margin: { base: "116px 0 0 56%", "3xl": "140px 0 0 60%" },
+              minHeight: { base: "160px", "3xl": "176px" },
+            })}
             position="relative"
             margin="116px 0 0 56%"
-            width="320px"
-            minHeight="160px"
           >
             <ModalButton
+              className={css({
+                width: { "3xl": "40px" },
+                height: { "3xl": "40px" },
+              })}
               position="absolute"
               top="10px"
               right="10px"
@@ -201,19 +208,31 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
               />
             </ModalButton>
 
-            <h2 className={css({ fontSize: "md", fontWeight: "600" })}>
+            <h2
+              className={css({
+                fontSize: { base: "md", "3xl": "lm" },
+                fontWeight: "600",
+              })}
+            >
               {activeVisual.title}
             </h2>
-            <p className={css({ mt: "4px", fontSize: "sm" })}>
+            <p
+              className={css({
+                mt: "4px",
+                fontSize: { base: "sm", "3xl": "md" },
+              })}
+            >
               {activeVisual.caption}
             </p>
-            <small>taken in {activeVisual.year}</small>
+            <small className={css({ fontSize: { base: "xs", "3xl": "sm" } })}>
+              taken in {activeVisual.year}
+            </small>
             {activeVisual.tags.map((tag, index) => (
               <small
                 key={tag + `_${index}`}
                 className={css({
                   display: "block",
-                  fontSize: "xs",
+                  fontSize: { base: "xs", "3xl": "sm" },
                   color: "#7b7878",
                 })}
               >
