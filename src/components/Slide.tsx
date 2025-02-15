@@ -141,7 +141,7 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
                 <picture>
                   <source
                     media="(min-width: 1800px)"
-                    srcSet={visual.photo.url + "?fit=crop&w=192&h=108"}
+                    srcSet={visual.photo.url + "?fit=crop&w=192&h=108&dpr=2"}
                   />
                   <img
                     loading="lazy"
