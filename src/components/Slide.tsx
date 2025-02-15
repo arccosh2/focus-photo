@@ -15,7 +15,7 @@ interface Props {
 }
 
 const MOVE_X = 170;
-const MOVE_X_LARGE = 240;
+const MOVE_X_LARGE = 208;
 const LARGE_WINDOW_BREAKPOINT = 1800;
 
 export const Slide: React.FC<Props> = ({ visuals }) => {
@@ -77,13 +77,13 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
         <picture>
           <source
             media="(min-width: 1800px)"
-            srcSet={activeVisual.photo.url + "?fit=crop&w=1280&h=720"}
+            srcSet={activeVisual.photo.url + "?fit=crop&w=960&h=540"}
           />
           <img
             src={activeVisual.photo.url + "?fit=crop&w=928&h=522"}
             className={css({
-              width: { base: "928px", "3xl": "1280px" },
-              height: { base: "522px", "3xl": "720px" },
+              width: { base: "928px", "3xl": "960px" },
+              height: { base: "522px", "3xl": "540px" },
               borderRadius: "8px",
             })}
           />
@@ -93,21 +93,13 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
             className={css({
               top: { base: "16px", "3xl": "20px" },
               right: { base: "16px", "3xl": "20px" },
-              width: { "3xl": "40px" },
-              height: { "3xl": "40px" },
             })}
             position="absolute"
             backgroundColor="#000"
             opacity="0.8"
             onClick={handleModalOpen}
           >
-            <img
-              src={openInFullIcon.src}
-              className={css({
-                width: { base: "18px", "3xl": "24px" },
-                height: { base: "18px", "3xl": "24px" },
-              })}
-            />
+            <img src={openInFullIcon.src} width="18ox" height="18px" />
           </ModalButton>
         )}
 
@@ -118,8 +110,8 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
             alignItems: "flex-start",
             gap: { base: "10px", "3xl": "16px" },
             display: "flex",
-            width: { base: "928px", "3xl": "1280px" },
-            height: { base: "102px", "3xl": "137px" },
+            width: { base: "928px", "3xl": "960px" },
+            height: { base: "102px", "3xl": "119px" },
             mt: "12px",
             overflow: "scroll",
             overflowY: "hidden",
@@ -136,12 +128,12 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
                   activeIndex === index
                     ? css({
                         position: "relative",
-                        width: { "3xl": "224px" },
-                        height: { "3xl": "126px" },
+                        width: { "3xl": "192px" },
+                        height: { "3xl": "108px" },
                       })
                     : css({
-                        width: { "3xl": "224px" },
-                        height: { "3xl": "126px" },
+                        width: { "3xl": "192px" },
+                        height: { "3xl": "108px" },
                         opacity: 0.4,
                       })
                 }
@@ -149,7 +141,7 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
                 <picture>
                   <source
                     media="(min-width: 1800px)"
-                    srcSet={visual.photo.url + "?fit=crop&w=224&h=126"}
+                    srcSet={visual.photo.url + "?fit=crop&w=192&h=108"}
                   />
                   <img
                     loading="lazy"
@@ -166,9 +158,9 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
           <span
             className={css({
               position: "absolute",
-              width: { base: "160px", "3xl": "224px" },
+              width: { base: "160px", "3xl": "192px" },
               height: "5px",
-              top: { base: "96px", "3xl": "131px" },
+              top: { base: "96px", "3xl": "114px" },
               backgroundColor: "underBar",
               borderRadius: "4px",
             })}
@@ -180,19 +172,12 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
       {isModalOpen && (
         <Modal isImageDecoded={true} handleModalClose={handleModalClose}>
           <ModalContent
-            className={css({
-              width: { base: "320px", "3xl": "400px" },
-              margin: { base: "116px 0 0 56%", "3xl": "140px 0 0 60%" },
-              minHeight: { base: "160px", "3xl": "176px" },
-            })}
             position="relative"
-            margin="116px 0 0 56%"
+            width="320px"
+            minHeight="160px"
+            margin="128px 0 0 56%"
           >
             <ModalButton
-              className={css({
-                width: { "3xl": "40px" },
-                height: { "3xl": "40px" },
-              })}
               position="absolute"
               top="10px"
               right="10px"
@@ -210,7 +195,7 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
 
             <h2
               className={css({
-                fontSize: { base: "md", "3xl": "lm" },
+                fontSize: "md",
                 fontWeight: "600",
               })}
             >
@@ -219,12 +204,12 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
             <p
               className={css({
                 mt: "4px",
-                fontSize: { base: "sm", "3xl": "md" },
+                fontSize: "sm",
               })}
             >
               {activeVisual.caption}
             </p>
-            <small className={css({ fontSize: { base: "xs", "3xl": "sm" } })}>
+            <small className={css({ fontSize: "xs" })}>
               taken in {activeVisual.year}
             </small>
             {activeVisual.tags.map((tag, index) => (
@@ -232,7 +217,7 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
                 key={tag + `_${index}`}
                 className={css({
                   display: "block",
-                  fontSize: { base: "xs", "3xl": "sm" },
+                  fontSize: "xs",
                   color: "#7b7878",
                 })}
               >
