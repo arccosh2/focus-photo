@@ -14,18 +14,18 @@ const pageTitle = "About Page";
       justifyContent: "center",
       textAlign: { base: "left", md: "center" },
       width: "100%",
-      mt: { base: "40px", lg: "32px", md: "24px" },
-      mb: { base: "72px", lg: "48px", md: "40px" },
+      mt: { base: "40px", lg: "32px", md: "24px", "3xl": "40px" },
+      mb: { base: "72px", lg: "48px", md: "40px", "3xl": "56px" },
       padding: "0 24px",
     })}
   >
-    <h1 class={css({ fontSize: { base: "lm", sm: "xl" } })}>
+    <h1 class={css({ fontSize: { base: "lm", sm: "xl", "3xl": "xxl" } })}>
       This is the place for posting my photos.
     </h1>
     <p
       class={css({
-        mt: "16px",
-        fontSize: { base: "sm", sm: "md" },
+        mt: { base: "16px", "3xl": "24px" },
+        fontSize: { base: "sm", sm: "md", "3xl": "lm" },
         letterSpacing: "0.1em",
         lineHeight: "2",
       })}
@@ -40,15 +40,18 @@ const pageTitle = "About Page";
     </p>
     <div
       class={css({
-        mt: { base: "24px", md: "32px" },
+        mt: { base: "24px", md: "32px", "3xl": "56px" },
         borderRadius: "50%",
         textAlign: "center",
       })}
     >
       <img
         src={profileIcon.src}
-        class={css({ display: "inline-block", borderRadius: "50%" })}
-        width="128px"
+        class={css({
+          display: "inline-block",
+          width: { base: "128px", "3xl": "156px" },
+          borderRadius: "50%",
+        })}
         height="auto"
       />
     </div>
@@ -57,7 +60,7 @@ const pageTitle = "About Page";
       class={css({
         color: "profile",
         mt: { base: "16px", md: "12px" },
-        fontSize: "20px",
+        fontSize: { base: "20px", "3xl": "lm" },
         fontWeight: "bold",
         fontFamily: "Verdana",
         textAlign: "center",

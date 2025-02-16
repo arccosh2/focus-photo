@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAnimate } from "framer-motion";
 import type { Visual } from "src/library/microcms";
 import { Modal } from "./Modal";
@@ -8,21 +8,38 @@ import openInFullIcon from "src/assets/common/ic_open-in-full.svg";
 import { css } from "styled-system/css";
 import { ModalButton } from "./ModalButton";
 import { ModalContent } from "./ModalContent";
+import { SlideThumbnail } from "./SlideThumbnail";
 
 interface Props {
   visuals: Visual[];
 }
 
+const MOVE_X = 170;
+const MOVE_X_LARGE = 208;
+const LARGE_WINDOW_BREAKPOINT = 1800;
+
 export const Slide: React.FC<Props> = ({ visuals }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowInnerWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const [underBar, animate] = useAnimate();
 
   const transformUnderBar = (index: number) => {
     if (!underBar.current || index === activeIndex) return;
 
-    // TODO: 解像度に応じて移動量を調整する
-    const moveX = index * 170;
+    const baseMoveX =
+      windowInnerWidth >= LARGE_WINDOW_BREAKPOINT ? MOVE_X_LARGE : MOVE_X;
+    const moveX = index * baseMoveX;
 
     const moveAnimation = (moveX: number) => {
       animate(
@@ -57,30 +74,32 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
           animation: "fadein 0.3s",
         })}
       >
-        <img
-          src={activeVisual.photo.url + "?fit=crop&w=928&h=522"}
-          className={css({
-            width: "928px",
-            height: "522px",
-            borderRadius: "8px",
-          })}
-        />
+        <picture>
+          <source
+            media="(min-width: 1800px)"
+            srcSet={activeVisual.photo.url + "?fit=crop&w=1152&h=648&dpr=2"}
+          />
+          <img
+            src={activeVisual.photo.url + "?fit=crop&w=928&h=522&dpr=2"}
+            className={css({
+              width: { base: "928px", "3xl": "1152px" },
+              height: { base: "522px", "3xl": "648px" },
+              borderRadius: "8px",
+            })}
+          />
+        </picture>
         {!isModalOpen && (
           <ModalButton
+            className={css({
+              top: { base: "16px", "3xl": "20px" },
+              right: { base: "16px", "3xl": "20px" },
+            })}
             position="absolute"
-            top="16px"
-            right="16px"
             backgroundColor="#000"
             opacity="0.8"
             onClick={handleModalOpen}
           >
-            <img
-              src={openInFullIcon.src}
-              className={css({
-                width: "18px",
-                height: "18px",
-              })}
-            />
+            <img src={openInFullIcon.src} width="18ox" height="18px" />
           </ModalButton>
         )}
 
@@ -89,10 +108,10 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
             position: "relative",
             justifyContent: "flex-start",
             alignItems: "flex-start",
-            gap: "10px",
+            gap: { base: "10px", "3xl": "16px" },
             display: "flex",
-            width: "928px",
-            height: "102px",
+            width: { base: "928px", "3xl": "1152px" },
+            height: { base: "102px", "3xl": "119px" },
             mt: "12px",
             overflow: "scroll",
             overflowY: "hidden",
@@ -104,40 +123,44 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
         >
           {visuals.map((visual, index) => (
             <button onClick={() => handleThumbnailClick(index)} key={visual.id}>
-              <div
+              <SlideThumbnail
                 className={
                   activeIndex === index
                     ? css({
                         position: "relative",
-                        width: "160px",
-                        height: "90px",
-                        borderRadius: "8px",
-                        overflow: "hidden",
+                        width: { "3xl": "192px" },
+                        height: { "3xl": "108px" },
                       })
                     : css({
-                        width: "160px",
-                        height: "90px",
-                        borderRadius: "8px",
-                        overflow: "hidden",
+                        width: { "3xl": "192px" },
+                        height: { "3xl": "108px" },
                         opacity: 0.4,
                       })
                 }
               >
-                <img
-                  loading="lazy"
-                  src={visual.photo.url + "?fit=crop&w=160&h=90"}
-                  width="100%"
-                  height="100%"
-                />
-              </div>
+                <picture>
+                  <source
+                    media="(min-width: 1800px)"
+                    srcSet={visual.photo.url + "?fit=crop&w=192&h=108&dpr=2"}
+                  />
+                  <img
+                    loading="lazy"
+                    src={visual.photo.url + "?fit=crop&w=160&h=90&dpr=2"}
+                    className={css({
+                      width: "100%",
+                      height: "100%",
+                    })}
+                  />
+                </picture>
+              </SlideThumbnail>
             </button>
           ))}
           <span
             className={css({
               position: "absolute",
-              width: "160px",
+              width: { base: "160px", "3xl": "192px" },
               height: "5px",
-              top: "96px",
+              top: { base: "96px", "3xl": "114px" },
               backgroundColor: "underBar",
               borderRadius: "4px",
             })}
@@ -150,9 +173,11 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
         <Modal isImageDecoded={true} handleModalClose={handleModalClose}>
           <ModalContent
             position="relative"
-            margin="116px 0 0 56%"
             width="320px"
-            height="160px"
+            minHeight="160px"
+            className={css({
+              margin: { base: "128px 0 0 56%", "3xl": "128px 0 0 60%" },
+            })}
           >
             <ModalButton
               position="absolute"
@@ -170,13 +195,25 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
               />
             </ModalButton>
 
-            <h2 className={css({ fontSize: "md", fontWeight: "600" })}>
+            <h2
+              className={css({
+                fontSize: "md",
+                fontWeight: "600",
+              })}
+            >
               {activeVisual.title}
             </h2>
-            <p className={css({ mt: "4px", fontSize: "sm" })}>
+            <p
+              className={css({
+                mt: "4px",
+                fontSize: "sm",
+              })}
+            >
               {activeVisual.caption}
             </p>
-            <small>taken in {activeVisual.year}</small>
+            <small className={css({ fontSize: "xs" })}>
+              taken in {activeVisual.year}
+            </small>
             {activeVisual.tags.map((tag, index) => (
               <small
                 key={tag + `_${index}`}
