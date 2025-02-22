@@ -104,7 +104,6 @@ export const Slide: React.FC<Props> = ({ visuals }) => {
         )}
 
         <div
-          draggable="true"
           className={css({
             position: "relative",
             justifyContent: "flex-start",

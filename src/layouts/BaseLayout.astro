@@ -19,11 +19,7 @@ const { pageTitle } = Astro.props;
     <ViewTransitions />
     <Analytics />
   </head>
-  <body
-    oncontextmenu="return false;"
-    onselectstart="return false;"
-    onmousedown="return false;"
-  >
+  <body oncontextmenu="return false;" onselectstart="return false;">
     <Header />
     <main>
       <slot />
